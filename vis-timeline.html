@@ -34,7 +34,7 @@
 	
 </head>
 <body>
-	<br/>
+	<p>Choose the configuration options and hit "Load Timeline" to show the timeline with sample data.</p>
 	<table>
 		<tbody>
 			<tr>
@@ -107,9 +107,25 @@
 					
 				</td>
 				<td style="text-align:right;">
-					<button onclick="setData();"> Reset Data</button>
+					<button onclick="setData();">Load Timeline</button>
 				</td>
 			</tr>
+
+	</table>
+	
+	
+	<br/><br/><br/>
+	<table style="width:100%">
+		<tbody>
+			<tr>
+				<td class="timeline-arrow left" onclick="onLeftClick();">&lt;</td>
+				<td><div id="visualization"></div></td>
+				<td class="timeline-arrow right" onclick="onRightClick();">&gt;</td>
+			</tr>
+		</tbody>
+	</table>
+	<table>
+		<tbody>
 			<tr>
 				<td>
 					Zoom from:
@@ -137,19 +153,6 @@
 				<td style="text-align:right;"> 
 					<button onclick="setZoom();"> Zoom</button>
 				</td>
-			</tr>
-		</tbody>
-
-	</table>
-	
-	
-	<br/><br/><br/>
-	<table style="width:100%">
-		<tbody>
-			<tr>
-				<td class="timeline-arrow left" onclick="onLeftClick();">&lt;</td>
-				<td><div id="visualization"></div></td>
-				<td class="timeline-arrow right" onclick="onRightClick();">&gt;</td>
 			</tr>
 		</tbody>
 	</table>
