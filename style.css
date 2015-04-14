@@ -1,0 +1,216 @@
+.timeline-arrow{
+	width:20px;
+	color:darkgray;
+	font-size:20px;
+}
+.timeline-arrow:hover {
+	background-color: #f1f1f1;
+}
+.timeline-arrow.left{
+	text-align:right;
+}
+.timeline-arrow.right {
+	text-align:left;
+}
+
+.vis.timeline .item {
+  /*border-color: #8BC333;*/
+  padding:0px;
+  border: 2px;
+  background-color: white;
+}
+.vis.timeline .item.selected {
+	background-color: white;	
+}
+
+.vis.timeline .currenttime {
+	background-color: darkgray;
+}
+.vis.timeline .timeaxis .grid.vertical {
+	border: 0px;
+}
+
+.vis.timeline .item.box {
+	width: 35px;
+	height: 35px;
+	-moz-border-radius: 35px;
+	-webkit-border-radius: 35px;
+	border-radius: 35px;
+ }
+.vis.timeline .item.line {
+  border-width: 1px;
+  padding: 0px;
+}
+
+.vis.timeline .item.dot {
+  border-width: 4px;
+  border-radius: 4px;
+}
+
+.vis.timeline .timeaxis .text {
+  color: gray;
+  padding-top: 10px;
+  padding-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+.vis.timeline .timeaxis .text.major {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.vis.timeline .timeaxis .grid.minor {
+    /*border-width: 1px;
+    border-color: #d3d3d3;*/
+}
+
+.vis.timeline .timeaxis .grid.major {
+  border-width: 2px;
+  border-color: #d3d3d3;
+}
+.circle {
+	border: 2px solid red;
+	width: 50px;
+	height: 50px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+.inner-icon {
+	color:inherit; 
+	font-size:25px; 
+	font-weight:300;
+	position:relative;
+	top: 4px;
+}
+.vis.timeline .item span[class*="icon-folder-md"]{
+	left:2px;
+}
+.vis.timeline .item.range {
+	border-bottom: 4px solid #8BD333;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	background-color: transparent;
+}
+
+/* phase0 */
+.vis.timeline .item.phase0-complete {
+	border-color: #FF8B33;
+	background-color: #FF8B33;
+	color: white;
+}
+.vis.timeline .item.phase0-complete.selected {
+	border-color: #CC6F29;
+	background-color: #CC6F29;
+}
+.vis.timeline .item.phase0 {
+	border-color: #FF8B33;
+	color: #FF8B33;
+}
+.vis.timeline .item.phase0.selected {
+	border-color: #CC6F29;
+	color:#CC6F29;
+}
+
+/* phase1 */
+.vis.timeline .item.phase1-complete {
+	border-color: #47BBDC;
+	background-color: #47BBDC;
+	color: white;
+}
+.vis.timeline .item.phase1-complete.selected {
+	border-color: #3996B0;
+	background-color: #3996B0;
+}
+.vis.timeline .item.phase1 {
+	border-color: #47BBDC;
+	color: #47BBDC;
+}
+.vis.timeline .item.phase1.selected {
+	border-color: #3996B0;
+	color:#3996B0;
+}
+
+/* phase2 */
+.vis.timeline .item.phase2-complete {
+	border-color: #8BD333;
+	background-color: #8BD333;
+	color: white;
+}
+.vis.timeline .item.phase2-complete.selected {
+	border-color: #6FA929;
+	background-color: #6FA929;
+}
+.vis.timeline .item.phase2 {
+	border-color: #8BD333;
+	color: #8BD333;
+}
+.vis.timeline .item.phase2.selected {
+	border-color: #6FA929;
+	color:#6FA929;
+}
+
+/* phase3 */
+.vis.timeline .item.phase3-complete {
+	border-color: #00978C;
+	background-color:#00978C;
+	color: white;
+}
+.vis.timeline .item.phase3-complete.selected {
+	border-color: #007970;
+	background-color: #007970;
+}
+.vis.timeline .item.phase3 {
+	border-color: #00978C;
+	color: #00978C;
+}
+.vis.timeline .item.phase3.selected {
+	border-color: #007970;
+	color:#007970;
+}
+
+/* phase4 */
+.vis.timeline .item.phase4-complete {
+	border-color: #BF006D;
+	background-color:#BF006D;
+	color: white;
+}
+.vis.timeline .item.phase4-complete.selected {
+	border-color: #990057;
+	background-color: #990057;
+}
+.vis.timeline .item.phase4 {
+	border-color: #BF006D;
+	color: #BF006D;
+}
+.vis.timeline .item.phase4.selected {
+	border-color: #990057;
+	color:#990057;
+}
+.vis.timeline .item.range {
+	background-color: transparent;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+/* Phone task */
+.vis.timeline .item.phone {
+	border-color: #47BBDC; /* light blue */
+}
+.vis.timeline .item.phone.selected {
+	border-color: #006BA9; /* dark blue */
+}
+
+/* Folder task */
+.vis.timeline .item.folder {
+	border-color: red;
+}
+.vis.timeline .item.folder.selected {
+	border-color: black;
+}
+/* no border around the timeline */
+.vis.timeline.root {
+	border: 0px;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Testing vis.js timeline</title>
+	<!-- <link href="http://visjs.org/dist/vis.css" rel="stylesheet"/> -->
+	<link href="vis.css" rel="stylesheet"/>
+	<link href="style.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/icons.css">
+	<!--  <script src="http://visjs.org/dist/vis.js"></script> -->
+	<script type="text/javascript" src="vis.js"></script>
+	<script type="text/javascript" src="timeline.js"></script>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	
+	<script type="text/javascript">
+ 
+		var changeTooltipPosition = function(event) {
+		  var tooltipX = event.pageX - 8;
+		  var tooltipY = event.pageY + 8;
+		  $('div.tooltip').css({top: tooltipY, left: tooltipX});
+		};
+	 
+		var showTooltip = function(event) {
+		  $('div.tooltip').remove();
+		  $('<div class="tooltip">I\' am tooltips! tooltips! tooltips! :)</div>')
+	            .appendTo('body');
+		  changeTooltipPosition(event);
+		};
+	 
+		var hideTooltip = function() {
+		   $('div.tooltip').remove();
+		};
+		
+</script>
+	
+</head>
+<body>
+	<br/>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					Start Date:
+				</td>
+				<td>
+					<input type="date" id="sDate" value="2015-02-10">
+				</td>
+				<td>
+					End Date:
+				</td>
+				<td>
+					<input type="date" id="eDate" value="2015-06-10">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Phases:
+				</td>
+				<td>
+					<input type="range" id="phases" min="1" max="5" value="4" steps="5" oninput="d.getElementById('phaseValue').innerHTML = this.value;"> <span id="phaseValue">4</span>
+				</td>
+				<td>
+					Tasks:
+				</td>
+				<td>
+					<input type="range" id="tasks" min="10" max="100" value="20" steps="10" oninput="d.getElementById('taskValue').innerHTML = this.value;"><span id="taskValue">20</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4"> Zoom and move constraints</td>
+			</tr>
+			<tr>
+				<td>
+					Min visible date:
+				</td>
+				<td>
+					<input type="date" id="minDate" value="2015-02-10">
+				</td>
+				<td>
+					Max visible date:
+				</td>
+				<td>
+					<input type="date" id="maxDate" value="2015-06-10">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Min zoom interval days:
+				</td>
+				<td>
+					<input type="range" id="minInterval" min="1" max="7" value="1" steps="7" oninput="d.getElementById('minIntervalValue').innerHTML = this.value;"> <span id="minIntervalValue">1</span>
+				</td>
+				<td>
+					Max zoom interval days:
+				</td>
+				<td>
+					<input type="range" id="maxInterval" min="30" max="150" value="150" steps="10" oninput="d.getElementById('maxIntervalValue').innerHTML = this.value;"><span id="maxIntervalValue">150</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td style="text-align:right;">
+					<button onclick="setData();"> Reset Data</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Zoom from:
+				</td>
+				<td>
+					<input type="date" id="fromDate" value="2015-02-10">
+				</td>
+				<td>
+					to:
+				</td>
+				<td>
+					<input type="date" id="toDate" value="2015-06-10">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+				<td style="text-align:right;"> 
+					<button onclick="setZoom();"> Zoom</button>
+				</td>
+			</tr>
+		</tbody>
+
+	</table>
+	
+	
+	<br/><br/><br/>
+	<table style="width:100%">
+		<tbody>
+			<tr>
+				<td class="timeline-arrow left" onclick="onLeftClick();">&lt;</td>
+				<td><div id="visualization"></div></td>
+				<td class="timeline-arrow right" onclick="onRightClick();">&gt;</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<h4> Implemented features </h4>
+		<ol>
+			<li>Custom icons and styling</li>
+			<li>Different colors for each phase</li>
+			<li>left and right paging</li>
+			<li>Completed tasks not movable</li>
+			<li>No delete icon</li>
+		</ol>
+		<h4>Features being worked on</h4>
+		<ol>
+			<li>show tooltip on click</li>
+			<li>Resizing of phase should not overlap the other phases</li>
+			<li>Icon color of a task should change when moved to a different phase</li>
+		</ol>
+	</div>
+	
+</body>
+</html>
