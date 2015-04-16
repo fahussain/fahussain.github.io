@@ -1,4 +1,5 @@
 	var d = document,
+		randomText = ['Lorem ipsum','dolor sit amet','consectetur adipiscing','sed do eiusmod','tempor incididunt','ut labore et dolore'],
 		icons = ['icon-phone-md','icon-folder-md','icon-envelope-md','icon-crown-md', 'icon-check-sm'],
 		phases = [], timeline = null,
 		options = {
@@ -61,9 +62,12 @@ var items = new vis.DataSet([
 				{type:'range', start: new Date(2010,7,28), end: new Date(2010,8,15), className: 'phase2', content: 'Phase 2'},
 				{ start: new Date(2010,8,4,12,0,0), className: 'phase2', content: '<span class="icon-folder-md inner-icon" ></span>'}
 			]);
-
+var getItemById = function(id){
+	return timeline.itemSet.items[id];
+};
 var onItemSelect = function(props){
-	console.log(props);
+	var item = getItemById(props.items[0]);
+	showTooltip(item.dom.box,item.data);
 };
 // Next page on clicking the right arrow
 var onRightClick = function(){
@@ -117,7 +121,8 @@ var generateData = function(startDate, endDate, totalPhases, tasks){
 		//phaseMonths = (endDate.getTime() - startDate.getMonth()
 	// generate phases
 	for (;phaseCount < maxPhases ; phaseCount++){
-		phase = {type:'range', stack:false, start: startDate, className:'phase' + phaseCount, content: "Phase "+phaseCount,phase: phaseCount}; 
+		phase = {type:'range', stack:false, start: startDate, className:'phase' + phaseCount, 
+			content: "Phase "+phaseCount,phase: phaseCount, text: randomText[Math.floor(Math.random()*6)]}; 
 		phase.end = new Date(Math.floor(startDate.getTime() + phaseMilliseconds));
 		phases.push(phase);
 		data.push(phase);
@@ -128,7 +133,7 @@ var generateData = function(startDate, endDate, totalPhases, tasks){
 		for ( ; taskCount < maxTasksPerPhase ; taskCount++ ){
 			task = { type:'box', start: randomDate(phase.start,phase.end), 
 					className:'phase'+phaseCount+(Math.random() < 0.5 ? '' : '-complete'),
-					phase: phaseCount};
+					phase: phaseCount, text: randomText[Math.floor(Math.random()*6)]};
 			task.content = generateItemContent(task);
 			data.push(task);
 		}
