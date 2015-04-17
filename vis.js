@@ -8656,21 +8656,29 @@ return /******/ (function(modules) { // webpackBootstrap
    *            items having a top===null will be re-stacked
    */
   exports.stack = function(items, margin, force) {
-    //@Faheem: Modified this function to keep the range items (phases) close to the x-axis
     var i, iMax;
+
     if (force) {
       // reset top position of all items
       for (i = 0, iMax = items.length; i < iMax; i++) {
-        items[i].top = null;
+        if (items[i].data.type && items[i].data.type === 'range'){
+          items[i].top = margin.axis;
+        }else {
+          items[i].top = null;
+        }
       }
     }
 
     // calculate new, non-overlapping positions
     for (i = 0, iMax = items.length; i < iMax; i++) {
       var item = items[i];
-      if (item.stack && item.top === null) {
+      if (item.stack && item.top === null ) {
+        if (item.data.type && item.data.type === "range"){
+          continue;
+        }
         // initialize top position
         item.top = margin.axis;
+        
 
         do {
           // TODO: optimize checking for overlap. when there is a gap without items,
@@ -8679,29 +8687,14 @@ return /******/ (function(modules) { // webpackBootstrap
           for (var j = 0, jj = items.length; j < jj; j++) {
             var other = items[j];
             if (other.top !== null && other !== item && other.stack && exports.collision(item, other, margin.item)) {
-              if (!(item.data.type === 'range' && other.data.type === 'range') )
-                collidingItem = other;
+              collidingItem = other;
               break;
             }
           }
 
           if (collidingItem != null) {
             // There is a collision. Reposition the items above the colliding element
-            var bottomItem, topItem, bothRange = false; 
-            if (item.data.type && item.data.type === 'range' ){
-              bottomItem = item;
-              topItem = collidingItem;
-            }else if( collidingItem.data.type && collidingItem.data.type === 'range'){
-              bottomItem = collidingItem;
-              topItem = item;
-            } else {
-              topItem = item;
-              bottomItem = collidingItem;
-            }
-            //item.top = collidingItem.top + collidingItem.height + margin.item.vertical;
-            topItem.top = bottomItem.top + bottomItem.height + margin.item.vertical;
-           
-            //console.log("collidingItem "+ collidingItem.data.type+" item "+item.data.type);
+            item.top = collidingItem.top + collidingItem.height + margin.item.vertical;
           }
         } while (collidingItem);
       }
