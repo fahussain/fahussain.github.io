@@ -63,72 +63,12 @@ var items = new vis.DataSet([
 				{ start: new Date(2010,8,4,12,0,0), className: 'phase2', content: '<span class="icon-folder-md inner-icon" ></span>'}
 			]);
 
-var items4 = [
-  {
-    "type": "range",
-    "stack": false,
-    "start": "2015-02-10T00:00:00.000Z",
-    "className": "phase0",
-    "content": "Phase 0",
-    "phase": 0,
-    "text": "Lorem ipsum",
-    "end": "2015-04-11T00:00:00.000Z",
-    "id": "2deadedc-f729-a6ed-cbd5-172310b146"
-  },
-  {
-    "type": "box",
-    "start": "2015-02-11T06:18:57.603Z",
-    "className": "phase0",
-    "phase": 0,
-    "text": "consectetur adipiscing",
-    "content": "<span class=\"inner-icon icon-crown-md\"> </span>",
-    "id": "50eb37bf-4455-a9dc-3754-ecd383e2b843"
-  },
-  {
-    "type": "box",
-    "start": "2015-03-22T14:47:21.802Z",
-    "className": "phase0",
-    "phase": 0,
-    "text": "ut labore et dolore",
-    "content": "<span class=\"inner-icon icon-check-sm\"> </span>",
-    "id": "a312306d-c9b3-aa3c-c545-d07b6d1f96ad"
-  },
-  {
-    "type": "range",
-    "stack": false,
-    "start": "2015-04-11T00:00:00.000Z",
-    "className": "phase1",
-    "content": "Phase 1",
-    "phase": 1,
-    "text": "Lorem ipsum",
-    "end": "2015-06-10T00:00:00.000Z",
-    "id": "2a5b3e8e-c0ab-9caf-6233-4f056d2a79c9"
-  },
-  {
-    "type": "box",
-    "start": "2015-05-07T07:00:12.762Z",
-    "className": "phase1-complete",
-    "phase": 1,
-    "text": "sed do eiusmod",
-    "content": "<span class=\"inner-icon icon-crown-md\"> </span>",
-    "id": "6866e155-2d3e-a2a2-3a0e-f2c26b5458e1"
-  },
-  {
-    "type": "box",
-    "start": "2015-04-19T21:38:42.245Z",
-    "className": "phase1",
-    "phase": 1,
-    "text": "Lorem ipsum",
-    "content": "<span class=\"inner-icon icon-envelope-md\"> </span>",
-    "id": "d435c539-8edf-9414-3fe6-819163e2dac1"
-  }
-];
 var getItemById = function(id){
 	return timeline.itemSet.items[id];
 };
 var onItemSelect = function(props){
 	var item = getItemById(props.items[0]);
-	showTooltip(item.dom.box,item.data);
+	item.data.type !== 'range' && showTooltip(item.dom.box,item.data);
 };
 // Next page on clicking the right arrow
 var onRightClick = function(){
