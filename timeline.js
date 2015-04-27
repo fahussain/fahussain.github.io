@@ -1,6 +1,6 @@
 	var d = document,
 		randomText = ['Lorem ipsum','dolor sit amet','consectetur adipiscing','sed do eiusmod','tempor incididunt','ut labore et dolore'],
-		icons = ['icon-phone-md','icon-folder-md','icon-envelope-md','icon-crown-md', 'icon-check-sm'],
+		icons = ['srevicon-phone-md','srevicon-folder-md','srevicon-envelope-md','srevicon-crown-md', 'srevicon-check-sm'],
 		phases = [], timeline = null,
 		options = {
 	  	onMoving: function (item, callback) {
@@ -140,7 +140,6 @@ var generateData = function(startDate, endDate, totalPhases, tasks){
 			data.push(task);
 		}
 	}
-	console.log(data);
 	return data; 
 }; 
 
@@ -160,3 +159,28 @@ var defaultZoom = function(){
 var zoom = function(startDate, endDate, animate){
 	timeline.range.setRange(startDate, endDate, animate,true);
 };
+
+var changeTooltipPosition = function(element) {
+	var position = $(element).offset();
+	position.left += $(element).width()+8;
+  $('div.item-tooltip').css(position);
+};
+	 
+var showTooltip = function(element,content) {
+  $('div.item-tooltip').remove();
+  $('<div class="item-tooltip"><div class="line1">'+content.start+'</div><div class="line2">'+content.text+'</div></div>')
+        .appendTo(element);
+  //changeTooltipPosition(element);
+};
+
+var hideTooltip = function() {
+   $('div.item-tooltip').remove();
+};
+
+angular.module('visApp',[]).controller('TabsCtrl', function ($scope, $window) {
+  $scope.alertMe = function() {
+    setTimeout(function() {
+      $window.alert('You\'ve selected the alert tab!');
+    });
+  };
+});

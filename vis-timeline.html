@@ -4,175 +4,169 @@
 	<title>Testing vis.js timeline</title>
 	<link href="vis.css" rel="stylesheet"/>
 	<link href="style.css" rel="stylesheet"/>
-	<link rel="stylesheet" type="text/css" href="https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/icons.css">
+	
+	<link href="bootstrap-ui/assets/bootstrap.css" rel="stylesheet"/>
+	<link href="srev-icons.css" rel="stylesheet"/>
+	<!-- <link rel="stylesheet" type="text/css" href="https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/icons.css"> -->
 	<style type="text/css">
 		
 	</style>
 	<script type="text/javascript" src="vis.js"></script>
-	<script type="text/javascript" src="timeline.js"></script>
+
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+	<script type="text/javascript" src="bootstrap-ui/ui-bootstrap-0.12.1.min.js"></script>
+	<script type="text/javascript" src="timeline.js"></script>
 	<script type="text/javascript">
- 
-		var changeTooltipPosition = function(element) {
-			var position = $(element).offset();
-			position.left += $(element).width()+8;
-		  $('div.item-tooltip').css(position);
-		};
-	 
-		var showTooltip = function(element,content) {
-		  $('div.item-tooltip').remove();
-		  $('<div class="item-tooltip"><div class="line1">'+content.start+'</div><div class="line2">'+content.text+'</div></div>')
-	            .appendTo(element);
-		  //changeTooltipPosition(element);
-		};
-	 
-		var hideTooltip = function() {
-		   $('div.item-tooltip').remove();
-		};
-		
 </script>
 	
 </head>
-<body>
-	<p>Choose the configuration options and hit "Load Timeline" to show the timeline with sample data. Use mouse wheel to zoom in and out and drag left and right to move or use arrows to page previous and next.</p>
-	<table>
-		<tbody>
-			<tr>
-				<td>
-					Start Date:
-				</td>
-				<td>
-					<input type="date" id="sDate" value="2015-02-10">
-				</td>
-				<td>
-					End Date:
-				</td>
-				<td>
-					<input type="date" id="eDate" value="2015-06-10">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Phases:
-				</td>
-				<td>
-					<input type="range" id="phases" min="1" max="5" value="4" steps="5" oninput="d.getElementById('phaseValue').innerHTML = this.value;"> <span id="phaseValue">4</span>
-				</td>
-				<td>
-					Tasks:
-				</td>
-				<td>
-					<input type="range" id="tasks" min="5" max="100" value="20" steps="10" oninput="d.getElementById('taskValue').innerHTML = this.value;"><span id="taskValue">20</span>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"> Zoom and move constraints</td>
-			</tr>
-			<tr>
-				<td>
-					Min visible date:
-				</td>
-				<td>
-					<input type="date" id="minDate" value="2015-02-10">
-				</td>
-				<td>
-					Max visible date:
-				</td>
-				<td>
-					<input type="date" id="maxDate" value="2015-06-10">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Min zoom interval days:
-				</td>
-				<td>
-					<input type="range" id="minInterval" min="1" max="7" value="1" steps="7" oninput="d.getElementById('minIntervalValue').innerHTML = this.value;"> <span id="minIntervalValue">1</span>
-				</td>
-				<td>
-					Max zoom interval days:
-				</td>
-				<td>
-					<input type="range" id="maxInterval" min="30" max="150" value="150" steps="10" oninput="d.getElementById('maxIntervalValue').innerHTML = this.value;"><span id="maxIntervalValue">150</span>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					
-				</td>
-				<td>
-					
-				</td>
-				<td>
-					
-				</td>
-				<td style="text-align:right;">
-					<button onclick="setData();">Load Timeline</button>
-				</td>
-			</tr>
+<body style="background-color: #F2F2F2;">
+	<div class="section-box">
+		<table>
+			<tbody>
+				<tr>
+					<td colspan="4">
+						<p>Choose the configuration options and hit "Load Timeline" to show the timeline with sample data. <br/> Use mouse wheel to zoom in and out and drag left and right to move or use arrows to page previous and next.</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Start Date:
+					</td>
+					<td>
+						<input type="date" id="sDate" value="2015-02-10">
+					</td>
+					<td>
+						End Date:
+					</td>
+					<td>
+						<input type="date" id="eDate" value="2015-06-10">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Phases:
+					</td>
+					<td>
+						<input type="range" id="phases" min="1" max="5" value="4" steps="5" oninput="d.getElementById('phaseValue').innerHTML = this.value;"> <span id="phaseValue">4</span>
+					</td>
+					<td>
+						Tasks:
+					</td>
+					<td>
+						<input type="range" id="tasks" min="5" max="1000" value="20" steps="10" oninput="d.getElementById('taskValue').innerHTML = this.value;"><span id="taskValue">20</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4"> Zoom and move constraints</td>
+				</tr>
+				<tr>
+					<td>
+						Min visible date:
+					</td>
+					<td>
+						<input type="date" id="minDate" value="2015-02-10">
+					</td>
+					<td>
+						Max visible date:
+					</td>
+					<td>
+						<input type="date" id="maxDate" value="2015-06-10">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Min zoom interval days:
+					</td>
+					<td>
+						<input type="range" id="minInterval" min="1" max="7" value="1" steps="7" oninput="d.getElementById('minIntervalValue').innerHTML = this.value;"> <span id="minIntervalValue">1</span>
+					</td>
+					<td>
+						Max zoom interval days:
+					</td>
+					<td>
+						<input type="range" id="maxInterval" min="30" max="150" value="150" steps="10" oninput="d.getElementById('maxIntervalValue').innerHTML = this.value;"><span id="maxIntervalValue">150</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						
+					</td>
+					<td>
+						
+					</td>
+					<td>
+						
+					</td>
+					<td style="text-align:right;">
+						<button onclick="setData();">Load Timeline</button>
+					</td>
+				</tr>
 
-	</table>
-	
-	
-	<br/><br/><br/>
-	<table style="width:100%">
-		<tbody>
-			<tr>
-				<td class="timeline-arrow left" onclick="onLeftClick();">&lt;</td>
-				<td><div id="visualization"></div></td>
-				<td class="timeline-arrow right" onclick="onRightClick();">&gt;</td>
-			</tr>
-		</tbody>
-	</table>
-	<table>
-		<tbody>
-			<tr>
-				<td>
-					Zoom from:
-				</td>
-				<td>
-					<input type="date" id="fromDate" value="2015-02-10">
-				</td>
-				<td>
-					to:
-				</td>
-				<td>
-					<input type="date" id="toDate" value="2015-06-10">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					
-				</td>
-				<td>
-					
-				</td>
-				<td>
-					
-				</td>
-				<td style="text-align:right;"> 
-					<button onclick="setZoom();"> Zoom</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<div>
-		<h4> Implemented features </h4>
-		<ol>
-			<li>Custom icons and styling</li>
-			<li>Different colors for each phase</li>
-			<li>left and right paging</li>
-			<li>Completed tasks not movable</li>
-			<li>No delete icon</li>
-			<li>Show tooltip on click</li>
-		</ol>
-		<h4>Features being worked on</h4>
-		<ol>
-			<li>Resizing of phase should not overlap the other phases</li>
-			<li>Icon color of a task should change when moved to a different phase</li>
-		</ol>
+		</table>
 	</div>
 	
+	
+	<div class="section-box">
+		<div>
+			<h4>Timeline</h4>
+		</div>
+		<div>
+			<table style="width:100%">
+				<tbody>
+					<tr>
+						<td class="timeline-arrow left" onclick="onLeftClick();">&lt;</td>
+						<td><div class="srev" id="visualization"></div></td>
+						<td class="timeline-arrow right" onclick="onRightClick();">&gt;</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	<div class="section-box">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						Zoom from:
+					</td>
+					<td>
+						<input type="date" id="fromDate" value="2015-02-10">
+					</td>
+					<td>
+						to:
+					</td>
+					<td>
+						<input type="date" id="toDate" value="2015-06-10">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						
+					</td>
+					<td>
+						
+					</td>
+					<td>
+						
+					</td>
+					<td style="text-align:right;"> 
+						<button onclick="setZoom();"> Zoom</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div ng-app="visApp">
+		<div ng-controller="TabsCtrl">
+		  <tabset justified="true">
+		    <tab heading="Justified">Justified content</tab>
+		    <tab heading="SJ">Short Labeled Justified content</tab>
+		    <tab heading="Long Justified">Long Labeled Justified content</tab>
+		  </tabset>
+		</div>
+	</div>
 </body>
 </html>

@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/* srev-icons */
+@font-face {
+  font-family: "srev-icons";
+  src:url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1427919301.eot");
+  src:url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1427919301.eot?#iefix") format("embedded-opentype"),
+    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1427919301.woff") format("woff"),
+    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1427919301.ttf") format("truetype"),
+    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1427919301.svg#1427919301") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "srev-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="srevicon-"]:before,
+[class*=" srevicon-"]:before {
+  font-family: "srev-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.srevicon-check-sm:before {
+  content: "a";
+}
+.srevicon-remove-sm:before {
+  content: "b";
+}
+.srevicon-folder-md:before {
+  content: "g";
+}
+.srevicon-phone-md:before {
+  content: "h";
+}
+.srevicon-envelope-md:before {
+  content: "c";
+}
+.srevicon-crown-md:before {
+  content: "d";
+}
