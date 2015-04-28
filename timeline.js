@@ -68,7 +68,7 @@ var getItemById = function(id){
 };
 var onItemSelect = function(props){
 	var item = getItemById(props.items[0]);
-	item.data.type !== 'range' && showTooltip(item.dom.box,item.data);
+	item && item.data.type !== 'range' && showTooltip(item.dom.box,item.data);
 };
 // Next page on clicking the right arrow
 var onRightClick = function(){
@@ -177,10 +177,11 @@ var hideTooltip = function() {
    $('div.item-tooltip').remove();
 };
 
-angular.module('visApp',[]).controller('TabsCtrl', function ($scope, $window) {
-  $scope.alertMe = function() {
-    setTimeout(function() {
-      $window.alert('You\'ve selected the alert tab!');
-    });
-  };
+var visApp = angular.module('visApp',['ui.bootstrap']);
+visApp.controller('TabsCtrl', function ($scope, $window) {
+	$scope.alertMe = function() {
+		setTimeout(function() {
+		  $window.alert('You\'ve selected the alert tab!');
+		});
+	};
 });

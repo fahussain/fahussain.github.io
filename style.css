@@ -1,7 +1,35 @@
 .srev{}
+.header{}
+.body-tab{}
+.header .bg-logo {
+	position:absolute; 
+	z-index: -1; 
+	height:60px;
+	background: #40ADD1 url("logo1.png") no-repeat left bottom; 
+	width:1280px;
+}
+.css-arrow {
+  display: inline-block;
+  color: #40ADD1;
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid;
+}
+.css-arrow.right {
+    border-right: 2px solid;
+    margin-right:8px;
+    margin-left: -8px;
+    transform: rotate(-45deg);
+}
+.css-arrow.left {
+    border-left: 2px solid; 
+    margin-left: 8px;
+    margin-right: -8px;
+    transform: rotate(45deg);
+}
 .timeline-arrow{
 	width:20px;
-	color:darkgray;
+	color:#40ADD1;
 	font-size:20px;
 }
 .timeline-arrow:hover {
@@ -13,14 +41,16 @@
 .timeline-arrow.right {
 	text-align:left;
 }
-
+.main-box {
+	max-width: 1280px;
+	margin:auto;
+}
 .section-box {
 	background-color:white; 
-	max-width:1280px; 
-	margin:auto;border: 1px solid #E6E6E6; 
+	margin:10px 0px;
+	border: 1px solid #D9D9D9; 
 	box-shadow: 0px 2px 2px #E6E6E6; 
 	padding:10px;
-	margin-top: 10px;
 }
 .vis.timeline .item {
   /*border-color: #8BC333;*/
@@ -248,4 +278,87 @@
 }
 .item-tooltip .line2 {
 	color: #3996B0;
+}
+
+
+/*  angular bootstrap ui mods */
+/* header tabs */
+.srev .header .nav-tabs > li > a,
+.srev .header .nav-tabs > li > a:hover {
+	color:white;
+	background-color:transparent;
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;
+	border-bottom:2px solid transparent;
+}
+.srev .header .nav-tabs > .active > a, 
+.srev .header .nav-tabs > .active > a:hover {
+	background-color:transparent;
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;
+	border-bottom:2px solid white;
+}
+.srev .header .nav-tabs {
+	border-bottom: 0px;
+	padding-left: 190px;
+} .nav-tabs > li > a,
+.srev .header .nav-tabs > li > a:hover {
+	color:white;
+	background-color:transparent;
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;
+	border-bottom:2px solid transparent;
+}
+.srev .header .nav-tabs > .active > a, 
+.srev .header .nav-tabs > .active > a:hover {
+	background-color:transparent;
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;
+	border-bottom:2px solid white;
+}
+.srev .header .nav-tabs {
+	border-bottom: 0px;
+}
+.srev .header .tab-content > .tab-pane {
+	padding: 20px;
+}
+/* body tabs */
+.srev .body-tab .nav-tabs > li > a,
+.srev .body-tab .nav-tabs > li > a:hover,
+.srev .nav-tabs > li > a,
+.srev .nav-tabs > li > a:hover {
+	color:black;
+	background-color:transparent;
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;
+	border-bottom:2px solid transparent;
+}
+.srev .body-tab .nav-tabs > .active > a, 
+.srev .body-tab .nav-tabs > .active > a:hover,
+.srev .nav-tabs > .active > a, 
+.srev .nav-tabs > .active > a:hover {
+	background-color:transparent;
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;
+	border-bottom:2px solid #47BBDC;
+}
+.srev .body-tab .nav-tabs,
+.srev .nav-tabs {
+	border-bottom: 0px;
+	padding-left:0px;
+}
+.srev .body-tab .tab-content > .tab-pane {
+	padding: 0px;
+}
+.srev h1,.srev h2,.srev h3,.srev h4,.srev h5,.srev h6{
+	font-weight: 400;
+}
+body.srev {
+	font-size: 12px;
 }
