@@ -91,7 +91,7 @@ var setData = function(){
 		endDate = new Date(d.getElementById("eDate").value),
 		totalPhases = Number(d.getElementById("phases").value),
 		tasks = Number(d.getElementById("tasks").value),
-		container = d.getElementById('visualization');
+		container = d.getElementById('timeline-container');
 	options.min = new Date(d.getElementById("minDate").value);
 	options.max = new Date(d.getElementById("maxDate").value);
 	options.zoomMin = Number(d.getElementById("minInterval").value) * 1000 * 60 * 60 * 24;
@@ -177,11 +177,35 @@ var hideTooltip = function() {
    $('div.item-tooltip').remove();
 };
 
-var visApp = angular.module('visApp',['ui.bootstrap']);
+var visApp = angular.module('visApp',['ui.bootstrap','ngGrid']);
 visApp.controller('TabsCtrl', function ($scope, $window) {
 	$scope.alertMe = function() {
 		setTimeout(function() {
 		  $window.alert('You\'ve selected the alert tab!');
 		});
 	};
+});
+
+visApp.controller('GridCtrl',['$scope', function($scope){
+	$scope.myData = [{actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
+                     {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
+                        {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
+                        {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
+                        {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
+                        {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
+                        {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},];
+    $scope.gridOptions = { 
+    	rowHeight: 45,
+        data: 'myData',
+        plugins: [new ngGridFlexibleHeightPlugin()],
+        columnDefs: [{field:'actions', displayName:'', cellTemplate:'<li style="list-style:none;"><i class="icon-phone"></i><i class="icon-remove"></i><i class="icon-ok"></i></li>'}, 
+                     {field:'duedate', displayName:'Due Date'},
+                    {field:'subject', displayName:'Subject'},
+                    {field:'status', displayName:'Status'},
+                    {field:'assignedto', displayName:'Assigned to'},
+                    {field:'play', displayName:'Play'},
+                     {field:'playdates', displayName:'Play Enter/Exit Dates'},]}
+}]);
+visApp.controller('CollapseCtrl', function ($scope) {
+	$scope.isCollapsed = true;
 });

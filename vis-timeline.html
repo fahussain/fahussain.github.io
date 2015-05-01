@@ -5,65 +5,81 @@
 	<link href="vis.css" rel="stylesheet"/>
 	<link href="style.css" rel="stylesheet"/>
 	
-	<link href="bootstrap-ui/assets/bootstrap.css" rel="stylesheet"/>
+	<!-- <link href="bootstrap-ui/assets/bootstrap.css" rel="stylesheet"/> -->
 	<link href="srev-icons.css" rel="stylesheet"/>
 	<!-- <link rel="stylesheet" type="text/css" href="https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/icons.css"> -->
+	<link rel="stylesheet" type="text/css" href="http://angular-ui.github.com/ng-grid/css/ng-grid.css" />
 	<style type="text/css">
 		
 	</style>
 	<script type="text/javascript" src="vis.js"></script>
 
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-	<script type="text/javascript" src="bootstrap-ui/ui-bootstrap-tpls-0.12.1.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script type="text/javascript" src="bootstrap-ui/ui-bootstrap-tpls-0.12.1.min.js"></script> -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+	<script src="//angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
+	<script type="text/javascript" src="ng-grid-flexible-height.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<script type="text/javascript" src="timeline.js"></script>
 	<script type="text/javascript">
 </script>
 	
 </head>
 <body class="srev" style="background-color: #F2F2F2;">
+
 <div class="main-box"> 
 	<div ng-app="visApp">
 		<div class="header">
-			<div class="bg-logo">
-				
-			</div>
+			<div class="bg-logo"></div>
 			<div style="height:10px;"></div>
-			<div ng-controller="TabsCtrl">
-				<tabset justified="true">
+			<div >
+				<tabset>
 					<tab heading="Overview"></tab>
+
 					<tab heading="Account Plans">
 						<div class="account-header">
 							<div style="color:gray;"> Account Plans</div>
 							<div><h4 style="margin-top: 3px;">Acme Account Plan</h4> </div>
 						</div>
 						<div>
-							<tabset class="body-tab" justified="true">
+							<tabset class="body-tab">
 							    <tab heading="Account"></tab>
 							    <tab heading="Activity">
 									<div class="section-box">
 										<div>
-											<h4>Timeline</h4>
+											<div style="display:inline-block;"><h4>Timeline</h4></div>
+											<div style="display:inline-block;float:right;">
+												<div style="display:none;" class="vis timeline">
+												<div class="item box phase2">
+														<div class="content">
+															<span class="inner-icon srevicon-envelope-md"> </span>
+														</div>
+												</div>
+												</div>
+												<button type="button"  ng-click="isCollapsed = !isCollapsed" class="btn btn-blue">:</button>
+											
+											</div>
 										</div>
 										<div>
-											<table style="width:100%">
+											
+												<table style="width:100%">
 												<tbody>
 													<tr>
 														<td class="timeline-arrow left" onclick="onLeftClick();">
 															<div class="css-arrow left"></div>
 														</td>
-														<td><div class="srev" id="visualization"></div></td>
+														<td><div class="srev" id="timeline-container"></div></td>
 														<td class="timeline-arrow right" onclick="onRightClick();">
 															<div class="css-arrow right"></div>
 														</td>
 													</tr>
 												</tbody>
 											</table>
-										</div>
-										
-									</div>
-									<div class="section-box">
-									<table>
+											<div collapse="isCollapsed">
+												<!--<div style="height:200px;"></div>-->
+																					<table>
 											<tbody>
 												<tr>
 													<td colspan="4">
@@ -75,13 +91,13 @@
 														Start Date:
 													</td>
 													<td>
-														<input type="date" id="sDate" value="2015-02-10">
+														<input class="form-control" type="date" id="sDate" value="2015-02-10">
 													</td>
 													<td>
 														End Date:
 													</td>
 													<td>
-														<input type="date" id="eDate" value="2015-06-10">
+														<input class="form-control" type="date" id="eDate" value="2015-06-10">
 													</td>
 												</tr>
 												<tr>
@@ -106,13 +122,13 @@
 														Min visible date:
 													</td>
 													<td>
-														<input type="date" id="minDate" value="2015-02-10">
+														<input class="form-control" type="date" id="minDate" value="2015-02-10">
 													</td>
 													<td>
 														Max visible date:
 													</td>
 													<td>
-														<input type="date" id="maxDate" value="2015-06-10">
+														<input class="form-control" type="date" id="maxDate" value="2015-06-10">
 													</td>
 												</tr>
 												<tr>
@@ -140,32 +156,66 @@
 														
 													</td>
 													<td style="text-align:right;">
-														<button onclick="setData();">Load Timeline</button>
+														<button class="btn btn-default" onclick="setData();">Load Timeline</button>
 													</td>
 												</tr>
 
 										</table>
-										<table>
+										<table style="display:none;">
 											<tbody>
 												<tr>
 													<td>
 														Zoom from:
 													</td>
 													<td>
-														<input type="date" id="fromDate" value="2015-02-10">
+														<input class="form-control" type="date" id="fromDate" value="2015-02-10">
 													</td>
 													<td>
 														to:
 													</td>
 													<td>
-														<input type="date" id="toDate" value="2015-06-10">
+														<input class="form-control" type="date" id="toDate" value="2015-06-10">
 													</td>
-													<td><button onclick="setZoom();"> Zoom</button></td>
+													<td><button class="btn btn-default" onclick="setZoom();"> Zoom</button></td>
 												</tr>
 												
 											</tbody>
 										</table>
+											</div>
+										</div>
+										
 									</div>
+									<div class="section-box" ng-controller="GridCtrl">
+										<h4>
+											Account Plan Tasks
+										</h4>
+										<div style="padding: 10px;">
+											<div>
+												<div class="btn-group" dropdown is-open="status.isopen">
+												  <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+
+												    All Tasks <span class="caret"></span>
+												  </button>
+												  <ul class="dropdown-menu" role="menu">
+												    <li><a href="#">Action</a></li>
+												    <li><a href="#">Another action</a></li>
+												    <li><a href="#">Something else here</a></li>
+												    <li class="divider"></li>
+												    <li><a href="#">Separated link</a></li>
+												  </ul>
+												</div>
+												<button type="button" class="btn btn-blue"> New Task </button>
+												<button type="button" class="btn btn-blue"> Add Playbook </button>
+												<button type="button" class="btn btn-blue"> : </button>
+												<div style="width:200px; float:right;">
+													<input class="form-control"  type="text" placeholder="Search Tasks..."/>	
+												</div>
+												
+											</div>
+										</div>
+							            <div class="gridStyle" ng-grid="gridOptions"></div>
+							        </div>
+									
 							    </tab>
 							    <tab heading="Usage"></tab>
 							    <tab heading="Assets"></tab>

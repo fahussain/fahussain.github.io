@@ -55,6 +55,7 @@
 	border: 1px solid #D9D9D9; 
 	box-shadow: 0px 2px 2px #E6E6E6; 
 	padding:10px;
+	width:100%;
 }
 .vis.timeline .item {
   /*border-color: #8BC333;*/
@@ -125,7 +126,7 @@
 	font-size:25px; 
 	font-weight:300;
 	position:relative;
-	top: 4px;
+	top: 1px;
 }
 .vis.timeline .item span[class*="icon-folder-md"]{
 	left:2px;
@@ -365,4 +366,47 @@
 }
 body.srev {
 	font-size: 12px;
+}
+
+/* ng grid styling */
+.srev .gridStyle {
+/*border: 1px solid rgb(212,212,212);*/
+	width: 100%;
+	height:300px;
+}
+.srev .ngCellText {
+	display: table-cell;
+  vertical-align: middle;
+}
+
+.srev .ngTopPanel {
+	background-color: transparent;   
+}
+.srev .ngHeaderContainer {
+	font-weight:500;
+}
+.srev .ngRow.even,
+.srev .ngRow.odd{
+	background-color: transparent;
+}
+.srev .ngVerticalBarVisible {
+	width: 0px;
+}
+.srev .ngRow {
+	border-bottom: 1px solid #EAEAEA;
+}
+
+/* bootstrap overrides */
+.srev input[type=date] {
+	line-height: 1.4em;
+}
+
+.srev .btn-blue {
+	color: #40ADD1;
+	background-color: #fff;
+	border-color:#40ADD1;
+}
+.srev .form-control,
+.srev .btn {
+	border-radius: 2px;
 }
