@@ -185,7 +185,6 @@ visApp.controller('TabsCtrl', function ($scope, $window) {
 		});
 	};
 });
-
 visApp.controller('GridCtrl',['$scope', function($scope){
 	$scope.myData = [{actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
                      {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},

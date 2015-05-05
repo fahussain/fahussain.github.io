@@ -2,7 +2,7 @@
 
 /* srev-icons */
 @font-face {
-  font-family: "srev-icons";
+ font-family: "srev-icons";
   src:url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1430430926.eot");
   src:url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1430430926.eot?#iefix") format("embedded-opentype"),
     url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1430430926.woff") format("woff"),
@@ -50,9 +50,18 @@
 .srevicon-phone-md:before {
   content: "h";
 }
+.srevicon-crown-md:before {
+  content: "d";
+}
 .srevicon-envelope-md:before {
   content: "c";
 }
-.srevicon-crown-md:before {
-  content: "d";
+.srevicon-coin-md:before {
+  content: "e";
+}
+.srevicon-arrow-right-md:before {
+  content: "f";
+}
+.srevicon-arrow-left-md:before {
+  content: "i";
 }
