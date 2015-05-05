@@ -162,7 +162,7 @@ var zoom = function(startDate, endDate, animate){
 
 var changeTooltipPosition = function(element) {
 	var position = $(element).offset();
-	position.left += $(element).width()+8;
+	position.left += $(element).width()+1;
   $('div.item-tooltip').css(position);
 };
 	 
