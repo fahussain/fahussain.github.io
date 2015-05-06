@@ -255,6 +255,7 @@
 .vis.timeline .item.range {
 	background-color: transparent;
 	font-size: 12px;
+	border-radius: 0px;
 }
 
 /* Phone task */
