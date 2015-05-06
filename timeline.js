@@ -1,7 +1,7 @@
 	var d = document,
 		randomText = ['Lorem ipsum','dolor sit amet','consectetur adipiscing','sed do eiusmod','tempor incididunt','ut labore et dolore'],
 		icons = ['srevicon-phone-md','srevicon-folder-md','srevicon-envelope-md','srevicon-crown-md', 'srevicon-check-sm'],
-		phases = [], timeline = null,
+		phases = [], timeline = null, queue = [],lastEventTime = (new Date()).getMilliseconds(), lastEventAction = null,
 		options = {
 	  	onMoving: function (item, callback) {
 	  		// Editing not allowed if task is complete
@@ -70,6 +70,27 @@ var onItemSelect = function(props){
 	var item = getItemById(props.items[0]);
 	item && item.data.type !== 'range' && showTooltip(item.dom.box,item.data);
 };
+var onTimelineClick = function(props){
+	if (props.what !== 'item'){
+		hideTooltip();
+	}
+};
+var onRangeChanged = function(props){
+	var currentEventTime = (new Date()).getMilliseconds(),
+		eventInterval = currentEventTime - lastEventTime,
+		currentEventAction = setTimeout(function(props){
+			_printProps(props);
+		}, 500);
+	console.log(eventInterval); 
+	if (eventInterval < 500){
+		clearTimeout(lastEventAction);
+		lastEventTime = currentEventTime;
+		lastEventAction = currentEventAction;
+	}
+};
+var _printProps = function(props){
+	console.log(props);
+};
 // Next page on clicking the right arrow
 var onRightClick = function(){
 	var range = timeline.range.getRange();
@@ -104,6 +125,8 @@ var setData = function(){
 
 	// add event listener
 	timeline.on('select', onItemSelect);
+	timeline.on('rangechanged', onRangeChanged);
+	timeline.on('click', onTimelineClick);
 	zoom(startDate, endDate, true);
 };
 var generateData = function(startDate, endDate, totalPhases, tasks){
@@ -123,7 +146,7 @@ var generateData = function(startDate, endDate, totalPhases, tasks){
 		//phaseMonths = (endDate.getTime() - startDate.getMonth()
 	// generate phases
 	for (;phaseCount < maxPhases ; phaseCount++){
-		phase = {type:'range', stack:false, start: startDate, className:'phase' + phaseCount, 
+		phase = {type:'range', start: startDate, className:'phase' + phaseCount, 
 			content: "Phase "+phaseCount,phase: phaseCount, text: randomText[Math.floor(Math.random()*6)]}; 
 		phase.end = new Date(Math.floor(startDate.getTime() + phaseMilliseconds));
 		phases.push(phase);
@@ -185,6 +208,21 @@ visApp.controller('TabsCtrl', function ($scope, $window) {
 		});
 	};
 });
+visApp.factory('taskFactory', function() {
+    var tasks = [];
+    var factory = {};
+    var generateData = function() {
+
+    };
+    factory.getTasks = function() {
+        if (tasks.length < 1){
+
+        }
+    };
+
+    return factory;
+});
+
 visApp.controller('GridCtrl',['$scope', function($scope){
 	$scope.myData = [{actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
                      {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
