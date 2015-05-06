@@ -303,7 +303,9 @@
 	color: #3996B0;
 }
 
-
+.srev .vis.timeline .editable div[class*="-complete"] {
+	cursor: auto;
+}
 /*  angular bootstrap ui mods */
 /* header tabs */
 .srev .header .nav-tabs > li > a,
