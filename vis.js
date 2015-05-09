@@ -7981,7 +7981,7 @@ return /******/ (function(modules) { // webpackBootstrap
     this.body.emitter.on('DOMMouseScroll',  this._onMouseWheel.bind(this)); // For FF
     //@Faheem
     // mouse hover for tooltip
-    //this.body.emitter.on('mouse')
+    //this.body.emitter.on('mouseover')
     //end @Faheem
     
     // pinch to zoom

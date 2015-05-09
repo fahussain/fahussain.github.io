@@ -1,4 +1,5 @@
 	var d = document,
+		dataById = [],
 		randomText = ['Lorem ipsum','dolor sit amet','consectetur adipiscing','sed do eiusmod','tempor incididunt','ut labore et dolore'],
 		icons = ['srevicon-phone-md','srevicon-folder-md','srevicon-envelope-md','srevicon-crown-md', 'srevicon-check-sm'],
 		phases = [], timeline = null, queue = [],lastEventTime = (new Date()).getMilliseconds(), lastEventAction = null,
@@ -35,6 +36,7 @@
 		        callback(item); // do something with the changed item data
 		    }
 		},
+		dataAttributes: ['id'],
 	    editable: true,
 	    margin: {
 	    	showCurrentTime: true,
@@ -62,7 +64,24 @@ var items = new vis.DataSet([
 				{type:'range', start: new Date(2010,7,28), end: new Date(2010,8,15), className: 'phase2', content: 'Phase 2'},
 				{ start: new Date(2010,8,4,12,0,0), className: 'phase2', content: '<span class="icon-folder-md inner-icon" ></span>'}
 			]);
-
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds. If `immediate` is passed, trigger the function on the
+// leading edge, instead of the trailing.
+var debounce = function (func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
 var getItemById = function(id){
 	return timeline.itemSet.items[id];
 };
@@ -75,18 +94,23 @@ var onTimelineClick = function(props){
 		hideTooltip();
 	}
 };
+var onTimelineMouseover = function(props){
+	console.log("hover");
+};
 var onRangeChanged = function(props){
+	console.log("range changed");
+	/*
 	var currentEventTime = (new Date()).getMilliseconds(),
 		eventInterval = currentEventTime - lastEventTime,
 		currentEventAction = setTimeout(function(props){
 			_printProps(props);
 		}, 500);
-	console.log(eventInterval); 
+	//console.log(eventInterval); 
 	if (eventInterval < 500){
 		clearTimeout(lastEventAction);
 		lastEventTime = currentEventTime;
 		lastEventAction = currentEventAction;
-	}
+	}*/
 };
 var _printProps = function(props){
 	console.log(props);
@@ -124,9 +148,19 @@ var setData = function(){
 	//timeline = new vis.Timeline(container, items4, options);
 
 	// add event listener
-	timeline.on('select', onItemSelect);
-	timeline.on('rangechanged', onRangeChanged);
-	timeline.on('click', onTimelineClick);
+	//timeline.on('select', onItemSelect);
+	// for range change multiple events are fired in close intervals
+	// so debounce the events to fire only one event at each range change
+	timeline.on('rangechanged', debounce( function(){
+		//console.log("range changed");
+	}, 150));
+	//timeline.on('click', onTimelineClick);
+	$( ".group" ).on( "mouseenter", "div[class^='item box']", function( event ) {
+	    showTooltip(this,dataById[$( this ).attr( "data-id")]);
+	});
+	$( ".group" ).on( "mouseleave", "div[class^='item box']", function( event ) {
+	    hideTooltip();
+	});
 	zoom(startDate, endDate, true);
 };
 var generateData = function(startDate, endDate, totalPhases, tasks){
@@ -146,26 +180,38 @@ var generateData = function(startDate, endDate, totalPhases, tasks){
 		//phaseMonths = (endDate.getTime() - startDate.getMonth()
 	// generate phases
 	for (;phaseCount < maxPhases ; phaseCount++){
-		phase = {type:'range', start: startDate, className:'phase' + phaseCount, 
-			content: "Phase "+phaseCount,phase: phaseCount, text: randomText[Math.floor(Math.random()*6)]}; 
+		phase = {type:'range', 
+			start: startDate, 
+			className:'phase' + phaseCount, 
+			content: "Phase "+phaseCount,
+			phase: phaseCount, 
+			text: randomText[Math.floor(Math.random()*6)]}; 
 		phase.end = new Date(Math.floor(startDate.getTime() + phaseMilliseconds));
+		phase.id = phaseCount * 1000;
 		phases.push(phase);
 		data.push(phase);
+		dataById[phase.id] = phase;
 		startDate = phase.end;
 		// generate tasks for each phase
 		var maxTasksPerPhase = Math.floor(maxTasks / maxPhases);
 		taskCount = 0;
 		for ( ; taskCount < maxTasksPerPhase ; taskCount++ ){
-			task = { type:'box', start: randomDate(phase.start,phase.end), 
-					className:'phase'+phaseCount+(Math.random() < 0.5 ? '' : '-complete'),
-					phase: phaseCount, text: randomText[Math.floor(Math.random()*6)]};
+			task = { type:'box', 
+				start: randomDate(phase.start,phase.end), 
+				className:'phase'+phaseCount+(Math.random() < 0.5 ? '' : '-complete'),
+				phase: phaseCount, 
+				text: randomText[Math.floor(Math.random()*6)]};
 			task.content = generateItemContent(task);
+			task.id = (phaseCount * 1000)+ taskCount+1;
 			data.push(task);
+			dataById[task.id] = task;
 		}
 	}
 	return data; 
 }; 
-
+var getUniqueNumber = function(){
+	return (new Date()).getTime();
+}
 var generateItemContent = function(task){
 	return '<span class="inner-icon '+icons[Math.floor(Math.random()*5)]+'"> </span>';
 };
@@ -191,12 +237,14 @@ var changeTooltipPosition = function(element) {
 	 
 var showTooltip = function(element,content) {
   $('div.item-tooltip').remove();
-  $('<div class="item-tooltip"><div class="line1">'+content.start+'</div><div class="line2">'+content.text+'</div></div>')
+  $('<div style="display:none;" class="item-tooltip"><div class="line1">'+content.start+'</div><div class="line2">'+content.text+'</div></div>')
         .appendTo(element);
+  $('div.item-tooltip').fadeIn();
   //changeTooltipPosition(element);
 };
 
 var hideTooltip = function() {
+	//$('div.item-tooltip').fadeOut(500,function(){$('div.item-tooltip').remove();});
    $('div.item-tooltip').remove();
 };
 
@@ -235,7 +283,7 @@ visApp.controller('GridCtrl',['$scope', function($scope){
     	rowHeight: 45,
         data: 'myData',
         plugins: [new ngGridFlexibleHeightPlugin()],
-        columnDefs: [{field:'actions', displayName:'', cellTemplate:'<li style="list-style:none;"><i class="icon-phone"></i><i class="icon-remove"></i><i class="icon-ok"></i></li>'}, 
+        columnDefs: [{field:'actions', displayName:'', cellTemplate:'<div class="ngCellText"><div class="outer-circle phase1-complete">	<span class="task-img srevicon-phone-md "> </span>	</div>	<span class="task-img srevicon-check-sm"> </span><span class="task-img srevicon-remove-sm"> </span></div>'}, 
                      {field:'duedate', displayName:'Due Date'},
                     {field:'subject', displayName:'Subject'},
                     {field:'status', displayName:'Status'},
@@ -245,4 +293,12 @@ visApp.controller('GridCtrl',['$scope', function($scope){
 }]);
 visApp.controller('CollapseCtrl', function ($scope) {
 	$scope.isCollapsed = true;
+});
+visApp.controller('TimelineController', ['$scope', function($scope) {
+  $scope.hi = "Hello";
+}])
+.directive('timeline', function() {
+  return {
+    template: '<div>something something</div>'
+  };
 });
