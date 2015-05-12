@@ -8,24 +8,43 @@
 
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
 	<script type="text/javascript">
-		angular.module('docsSimpleDirective', [])
-		.controller('Controller', ['$scope', function($scope) {
+		var app = angular.module('testApp', []);
+		app.factory('IconFactory', function () {
+			var taskIcons = {
+				phone: 'srevicon-phone-md',
+				email: 'srevicon-email-md',
+				check: 'srevicon-check-sm',
+				remove: 'srevicon-remove-sm'
+				}
+		    var getIcon = function (taskType) {
+		    	return taskIcons[taskType];
+		    };
+
+		    return {
+		        getIcon: getIcon
+		    };
+		});
+		app.controller('Controller', ['$scope', function($scope, IconFactory) {
 		  $scope.customer = {
-		    name: 'Naomi',
-		    address: '1600 Amphitheatre'
+		    taskType: '',
+		    phase: 'phase1',
+		    complete:true
 		  };
 		}])
 		.directive('myCustomer', function() {
 		  return {
 		    template: 'Name: {{customer.name}} Address: {{customer.address}}'
+		    	//'<div class="outer-circle {{customer.phase}}">'+
+		    	//'<span class="task-img srevicon-envelope-md"> </span>'
 		  };
 		});
+		
 	</script>
 	</style>
 </head>
-<body ng-app="docsSimpleDirective">
+<body ng-app="testApp">
 	<div class="outer-circle phase1">
-		<span class="task-img srevicon-envelope-md"> </span>
+		<span class="task-img srevicon-email-md"> </span>
 	</div>
 	<div class="outer-circle ">
 		<span class="task-img srevicon-check-sm"> </span>

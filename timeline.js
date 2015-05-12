@@ -1,7 +1,11 @@
 	var d = document,
 		dataById = [],
 		randomText = ['Lorem ipsum','dolor sit amet','consectetur adipiscing','sed do eiusmod','tempor incididunt','ut labore et dolore'],
-		icons = ['srevicon-phone-md','srevicon-folder-md','srevicon-envelope-md','srevicon-crown-md', 'srevicon-check-sm'],
+		icons = ['srevicon-phone-md','srevicon-folder-md','srevicon-email-md','srevicon-coins-md', 'srevicon-check-sm'],
+		subjects = ['Customer Adoption Task','Customer Reminder Task','Review Quote', 'Verify Offer value', 'Email Quote'],
+		status = ['complete','uncomplete'],
+		assignedTo = ['Omer Candy','Latia Davalos','Dania Stelling','Sophia Colman','Lana Caviness','Bertie Cunha'],
+		play = [],
 		phases = [], timeline = null, queue = [],lastEventTime = (new Date()).getMilliseconds(), lastEventAction = null,
 		options = {
 	  	onMoving: function (item, callback) {
@@ -144,24 +148,26 @@ var setData = function(){
 	if (timeline !== null){
 		timeline.destroy();
 	}
-	timeline = new vis.Timeline(container, generateData(startDate, endDate, totalPhases, tasks), options);
+	var data = generateData(startDate, endDate, totalPhases, tasks);
+	timeline = new vis.Timeline(container, data, options);
 	//timeline = new vis.Timeline(container, items4, options);
 
 	// add event listener
 	//timeline.on('select', onItemSelect);
 	// for range change multiple events are fired in close intervals
 	// so debounce the events to fire only one event at each range change
-	timeline.on('rangechanged', debounce( function(){
-		//console.log("range changed");
+	timeline.on('rangechanged', debounce( function(props){
+		filterData(data,props.start,props.end);
 	}, 150));
 	//timeline.on('click', onTimelineClick);
-	$( ".group" ).on( "mouseenter", "div[class^='item box']", function( event ) {
+	$( "div.group" ).on( "mouseenter", "div[class^='item box']", function( event ) {
 	    showTooltip(this,dataById[$( this ).attr( "data-id")]);
 	});
-	$( ".group" ).on( "mouseleave", "div[class^='item box']", function( event ) {
+	$( "div.group" ).on( "mouseleave", "div[class^='item box']", function( event ) {
 	    hideTooltip();
 	});
 	zoom(startDate, endDate, true);
+	refreshData(data);
 };
 var generateData = function(startDate, endDate, totalPhases, tasks){
 	var today = new Date(),
@@ -177,7 +183,15 @@ var generateData = function(startDate, endDate, totalPhases, tasks){
 		taskCount = 0, 
 		data = [],
 		phaseMilliseconds = (endDate.getTime() - startDate.getTime())/maxPhases;
-		//phaseMonths = (endDate.getTime() - startDate.getMonth()
+	var addMore = function(obj){
+		//{actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'}
+		obj.actions = "";
+		obj.duedate = obj.start;
+		obj.subject = subjects[Math.floor(Math.random()*subjects.length)];
+		obj.assignedto = assignedTo[Math.floor(Math.random()*assignedTo.length)];
+		obj.play = 'Account Adoption';
+		obj.playdates = '02-15-2014';
+	}
 	// generate phases
 	for (;phaseCount < maxPhases ; phaseCount++){
 		phase = {type:'range', 
@@ -188,6 +202,7 @@ var generateData = function(startDate, endDate, totalPhases, tasks){
 			text: randomText[Math.floor(Math.random()*6)]}; 
 		phase.end = new Date(Math.floor(startDate.getTime() + phaseMilliseconds));
 		phase.id = phaseCount * 1000;
+		addMore(phase);
 		phases.push(phase);
 		data.push(phase);
 		dataById[phase.id] = phase;
@@ -203,6 +218,7 @@ var generateData = function(startDate, endDate, totalPhases, tasks){
 				text: randomText[Math.floor(Math.random()*6)]};
 			task.content = generateItemContent(task);
 			task.id = (phaseCount * 1000)+ taskCount+1;
+			addMore(task);
 			data.push(task);
 			dataById[task.id] = task;
 		}
@@ -247,7 +263,21 @@ var hideTooltip = function() {
 	//$('div.item-tooltip').fadeOut(500,function(){$('div.item-tooltip').remove();});
    $('div.item-tooltip').remove();
 };
-
+var filterData = function(data,start,end){
+	var arr = $.grep(data, function( item, index ) {
+	  return ( item.start.getTime() >= start.getTime() &&
+	  		item.start.getTime() <= end.getTime());
+	});
+	refreshData(arr);
+}
+var refreshData = function(data){
+	var scope = angular.element('[ng-controller=GridCtrl]').scope();
+	if( scope ){
+		scope.$apply(function(){
+		        scope.myData = data;
+		});
+	}
+}
 var visApp = angular.module('visApp',['ui.bootstrap','ngGrid']);
 visApp.controller('TabsCtrl', function ($scope, $window) {
 	$scope.alertMe = function() {
