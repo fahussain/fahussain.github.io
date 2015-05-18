@@ -1,7 +1,7 @@
 	var d = document,
 		dataById = [],
 		randomText = ['Lorem ipsum','dolor sit amet','consectetur adipiscing','sed do eiusmod','tempor incididunt','ut labore et dolore'],
-		icons = ['srevicon-phone-md','srevicon-folder-md','srevicon-email-md','srevicon-coins-md', 'srevicon-check-sm'],
+		icons = ['srevicon-phone-md','srevicon-folder-md','srevicon-envelope-md','srevicon-coins-md', 'srevicon-check-sm'],
 		subjects = ['Customer Adoption Task','Customer Reminder Task','Review Quote', 'Verify Offer value', 'Email Quote'],
 		status = ['complete','uncomplete'],
 		assignedTo = ['Omer Candy','Latia Davalos','Dania Stelling','Sophia Colman','Lana Caviness','Bertie Cunha'],
@@ -309,9 +309,66 @@ visApp.controller('GridCtrl',['$scope', function($scope){
                         {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
                         {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},
                         {actions: "", duedate: '02-17-2014', subject:'Customer Adoption Task', status:'Not Started', assignedto:'Jon Smith',play:'Account Adoption', playdates:'02-15-2014'},];
+    $scope.filterOptions = {
+        filterText: "",
+        useExternalFilter: true
+    };
+    $scope.totalServerItems = 0;
+    $scope.pagingOptions = {
+        pageSizes: [5, 10, 20],
+        pageSize: 5,
+        currentPage: 1
+    };  
+    $scope.setPagingData = function(data, page, pageSize){	
+        var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+        $scope.myData = pagedData;
+        $scope.totalServerItems = data.length;
+        if (!$scope.$$phase) {
+            $scope.$apply();
+        }
+    };
+    $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+        setTimeout(function () {
+            var data;
+            $scope.setPagingData($scope.myData,page,pageSize);
+            /*
+            if (searchText) {
+                var ft = searchText.toLowerCase();
+                $http.get('largeLoad.json').success(function (largeLoad) {		
+                    data = largeLoad.filter(function(item) {
+                        return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
+                    });
+                    $scope.setPagingData(data,page,pageSize);
+                });            
+            } else {
+                $http.get('largeLoad.json').success(function (largeLoad) {
+                    $scope.setPagingData(largeLoad,page,pageSize);
+                });
+            } */
+        }, 100);
+    };
+	
+    $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
+	
+    $scope.$watch('pagingOptions', function (newVal, oldVal) {
+        if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
+          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+        }
+    }, true);
+    $scope.$watch('filterOptions', function (newVal, oldVal) {
+        if (newVal !== oldVal) {
+          $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+        }
+    }, true);
+	
     $scope.gridOptions = { 
     	rowHeight: 45,
         data: 'myData',
+        enablePaging: true,
+        showFooter: true,
+        totalServerItems:'totalServerItems',
+        pagingOptions: $scope.pagingOptions,
+        filterOptions: $scope.filterOptions,
         plugins: [new ngGridFlexibleHeightPlugin()],
         columnDefs: [{field:'actions', displayName:'', cellTemplate:'<div class="ngCellText"><div class="outer-circle phase1-complete">	<span class="task-img srevicon-phone-md "> </span>	</div>	<span class="task-img srevicon-check-sm"> </span><span class="task-img srevicon-remove-sm"> </span></div>'}, 
                      {field:'duedate', displayName:'Due Date'},
@@ -319,7 +376,7 @@ visApp.controller('GridCtrl',['$scope', function($scope){
                     {field:'status', displayName:'Status'},
                     {field:'assignedto', displayName:'Assigned to'},
                     {field:'play', displayName:'Play'},
-                     {field:'playdates', displayName:'Play Enter/Exit Dates'},]}
+                     {field:'playdates', displayName:'Play Enter/Exit Dates'}]}
 }]);
 visApp.controller('CollapseCtrl', function ($scope) {
 	$scope.isCollapsed = true;

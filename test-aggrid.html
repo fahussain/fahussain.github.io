@@ -1,0 +1,72 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <script src="bower_components/ag-grid/dist/angularGrid.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/ag-grid/dist/angularGrid.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/ag-grid/dist/theme-fresh.css">
+    <style type="text/css">
+    	.srev .ag-fresh .ag-root{
+    		border-width: 0px;
+    		font-family: inherit;
+    		width:500px;
+    	}
+    	.srev .ag-fresh .ag-header-container{
+    		background:none;
+    		border-bottom:1px solid #EAEAEA;
+    		font-weight: bold;
+    	}
+    	.srev .ag-fresh .ag-row {
+    		border-bottom:1px solid #EAEAEA;
+    	}
+    	.srev .ag-fresh .ag-header-cell{
+    		border-width: 0px;
+    		text-align: left;
+    		padding:12px;
+    	}
+    	.srev .ag-fresh .ag-row-odd {
+    		background-color: white;
+    	}
+    	.srev .ag-fresh .ag-cell {
+    		border-width: 0px;
+    		padding:12px;
+    	}
+    </style>
+    <script>
+    	var module = angular.module("example", ["angularGrid"]);
+
+	module.controller("exampleCtrl", function($scope) {
+
+	    var columnDefs = [
+	        {displayName: "Make", field: "make"},
+	        {displayName: "Make", field: "blah"},
+	        {displayName: "Make", field: "blahblah"},
+	        {displayName: "Make", field: "some"},
+	        {displayName: "Model", field: "model"},
+	        {displayName: "Price", field: "price"}
+	    ];
+
+	    var rowData = [
+	        {make: "Toyota", model: "Celica", price: 35000},
+	        {make: "Ford", model: "Mondeo", price: 32000},
+	        {make: "Porsche", model: "Boxter", price: 72000}
+	    ];
+
+	    $scope.gridOptions = {
+	    	headerHeight: 45,
+	    	rowHeight: 45,
+	        columnDefs: columnDefs,
+	        rowData: rowData,
+	        dontUseScrolls: true // because so little data, no need to use scroll bars
+	    };
+	    $scope.resize = function() {
+	        $scope.gridOptions.api.sizeColumnsToFit();
+	    };
+
+	});
+    </script>
+</head>
+<body class="srev" ng-app="example" ng-controller="exampleCtrl">
+    <div angular-grid="gridOptions" class="ag-fresh"></div>
+    <button ng-click="resize();">Resize</button>
+</body>
+</html>
