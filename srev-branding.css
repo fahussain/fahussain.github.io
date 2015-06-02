@@ -17,7 +17,7 @@
 .sidebar-nav li.active{
 	background-color:D9E9F2;
 }
-.active.a,
+.active>a,
 a {
 color:#3287BB;
 }
