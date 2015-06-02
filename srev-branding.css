@@ -17,6 +17,16 @@
 }
 /* top nav bar search box inactive background color */
 .search-nav .form-control{
+	/*background-color:#005B90;*/
+	background-color:white;
+	height:32px;
+}
+.search-nav .btn-default {
+	background-color:#3287BB;
+	color:white;
+	height:32px;
+}
+.search-nav .btn-default:hover {
 	background-color:#005B90;
 }
 /* left menu active menu item background */
