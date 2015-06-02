@@ -1,29 +1,38 @@
+/* logo box background color */
 .navbar-header{
 	background: #005B90;
 }
+/* top nav bar background color */
 #top-menu, #admin-nav{
 	background-color: #7EB4D5; 
 }
+/* top nav bar inactive button color */
 #top-menu li a, #admin-nav li a{
 	background-color:#3287BB;
 }
+/* top nav bar active and button hover color */
 #top-menu li a:hover, #admin-nav li a:hover,
 #top-menu .active>a, #admin-nav .active>a{
 	background-color:#005B90;
 }
+/* top nav bar search box inactive background color */
 .search-nav .form-control{
 	background-color:#005B90;
 }
+/* left menu active menu item background */
 .sidebar-nav li.active{
 	background-color:D9E9F2;
 }
+/* Left menu items text color */
 .active>a,
 a {
 color:#3287BB;
 }
+/* body background color */
 body {
 	background-color:#EEEEEE;
 }
+/* left menu white background */
 .report-section, .filter-field {
 	background:white;
 }
