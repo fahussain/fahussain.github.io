@@ -3,11 +3,11 @@
 /* srev-icons */
 @font-face {
   font-family: "srev-icons";
-  src:url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1431557515.eot");
-  src:url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1431557515.eot?#iefix") format("embedded-opentype"),
-    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1431557515.woff") format("woff"),
-    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1431557515.ttf") format("truetype"),
-    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1431557515.svg#1431557515") format("svg");
+  src:url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1432842416.eot");
+  src:url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1432842416.eot?#iefix") format("embedded-opentype"),
+    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1432842416.woff") format("woff"),
+    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1432842416.ttf") format("truetype"),
+    url("https://fontastic.s3.amazonaws.com/Uez9Zv2LnZY3UTzQ2kaDv/fonts/1432842416.svg#1432842416") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -41,23 +41,26 @@
 .srevicon-check-sm:before {
   content: "a";
 }
-.srevicon-remove-sm:before {
-  content: "b";
-}
 .srevicon-folder-md:before {
-  content: "g";
+  content: "e";
 }
 .srevicon-phone-md:before {
-  content: "h";
+  content: "f";
 }
 .srevicon-coins-md:before {
-  content: "j";
-}
-.srevicon-email-md:before {
-  content: "d";
+  content: "h";
 }
 .srevicon-envelope-md:before {
-  content: "c";
+  content: "g";
+}
+.srevicon-x-sm:before {
+  content: "b";
+}
+.srevicon-envelope-sm:before {
+  content: "d";
+}
+.srevicon-remove-sm:before {
+  content: "b";
 }
 .srevicon-coin-md:before {
   content: "e";
