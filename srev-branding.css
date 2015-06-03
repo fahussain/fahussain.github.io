@@ -24,11 +24,18 @@
 	border:1px solid #3287BB;
 	outline:none;
 }
+.search-nav .form-control-feedback {
+	right:28px;
+}
+.has-feedback .form-control {
+	padding-right:25px;
+}
 .search-nav .btn-default {
 	background-color:#3287BB;
 	color:white;
 	height:32px;
 	border-color:#3287BB;
+	padding: 6px 8px;
 }
 .search-nav .btn-default:hover {
 	background-color:#005B90;
