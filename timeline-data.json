@@ -1,0 +1,16 @@
+{
+type:'range’, // This attribute defines whether it is shown as a phase line or a circle above
+start: new Date(2010,7,15), // The starting date for the item //Would also be used in the hover over popup window
+end: new Date(2010,7,27), // The end date is only required for the phases/ranges. For other items it is not required
+className: 'phase1’, // The styling of the phase is driven by this attribute. It does not need to come from server side
+content: 'Phase 1’, // The content will be generated on the client using additional attributes in the item object.
+// Additional attributes including system attributes
+itemType: ‘TASK’, // TASK or OPPORTUNITY etc.
+taskType : ‘email’, // self explanatory
+status: 0, // 0 means not completed and 1 means completed
+url: …, //link navigating to task or opportunity. May be part of the "subject" displayed in hover
+description: …, // not needed for timeline
+whatId: …, //Not needed for timeline
+subject: …, //Used in hover over, for tasks displays subject, for opportunity displays opportunity name
+ownerId: …, //not needed for timeline
+ }
