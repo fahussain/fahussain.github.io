@@ -17842,7 +17842,6 @@ return /******/ (function(modules) { // webpackBootstrap
     have been made to accomodate the requirement. vis.timeline.stack*/
  exports.stack = function(items, margin, force) {
      var i, iMax;
-    console.log("custom stack called");
      if (force) {
          // reset top position of all items
          for (i = 0, iMax = items.length; i < iMax; i++) {
