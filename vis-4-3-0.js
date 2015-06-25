@@ -17799,7 +17799,7 @@ return /******/ (function(modules) { // webpackBootstrap
    * @param {boolean} [force=false]
    *            If true, all items will be repositioned. If false (default), only
    *            items having a top===null will be re-stacked
-   */
+   */ /*
   exports.stack = function (items, margin, force) {
     var i, iMax;
 
@@ -17836,7 +17836,52 @@ return /******/ (function(modules) { // webpackBootstrap
         } while (collidingItem);
       }
     }
-  };
+  };*/
+/* override the above stack function to make the ranges stick to the time axis.
+   This method is taken from the vis.js source and minimal modifications
+    have been made to accomodate the requirement. vis.timeline.stack*/
+ exports.stack = function(items, margin, force) {
+     var i, iMax;
+    console.log("custom stack called");
+     if (force) {
+         // reset top position of all items
+         for (i = 0, iMax = items.length; i < iMax; i++) {
+             if (items[i].data.type && items[i].data.type === 'range') {
+                 items[i].top = margin.axis;
+             } else {
+                 items[i].top = null;
+             }
+         }
+     }
+     // calculate new, non-overlapping positions
+     for (i = 0, iMax = items.length; i < iMax; i++) {
+         var item = items[i];
+         if (item.stack && item.top === null) {
+             if (item.data.type && item.data.type === "range") {
+                 continue;
+             }
+             // initialize top position
+             item.top = margin.axis;
+             do {
+                 // TODO: optimize checking for overlap. when there is a gap without items,
+                 //       you only need to check for items from the next item on, not from zero
+                 var collidingItem = null;
+                 for (var j = 0, jj = items.length; j < jj; j++) {
+                     var other = items[j];
+                     if (other.top !== null && other !== item && other.stack && exports.collision(item, other, margin.item)) {
+                         collidingItem = other;
+                         break;
+                     }
+                 }
+
+                 if (collidingItem !== null) {
+                     // There is a collision. Reposition the items above the colliding element
+                     item.top = collidingItem.top + collidingItem.height + margin.item.vertical;
+                 }
+             } while (collidingItem);
+         }
+     }
+ };
 
   /**
    * Adjust vertical positions of the items without stacking them
