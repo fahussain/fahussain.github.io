@@ -1,0 +1,91 @@
+{
+    "groups":[{
+        "name": "Group1",
+        "collapsed": false,
+        "indicators": [{
+            "id": "12",
+            "name": "Satisfaction",
+            "dataType": "Number",
+            "goalCriteria": {
+                "meetFrom": 12,
+                "meetTo": 20,
+                "successFrom": 12,
+                "successTo": 50,
+                "failFrom": 0,
+                "failTo": 10
+            }
+        }, {
+            "id": "12",
+            "name": "Satisfaction",
+            "dataType": "Date",
+            "goalCriteria": {
+                "meetFrom": 12,
+                "meetTo": 20,
+                "successFrom": 12,
+                "successTo": 50,
+                "failFrom": 0,
+                "failTo": 10
+            }
+        }, {
+            "id": "12",
+            "name": "Satisfaction",
+            "dataType": "String",
+            "goalCriteria": {
+                "meetFrom": 12,
+                "meetTo": 20,
+                "successFrom": 12,
+                "successTo": 50,
+                "failFrom": 0,
+                "failTo": 10
+            }
+        }]
+    }, {
+        "name": "Group1",
+        "collapsed": false,
+        "indicators": [{
+            "id": "12",
+            "name": "Satisfaction",
+            "dataType": "Date",
+            "goalCriteria": {
+                "meetFrom": 12,
+                "meetTo": 20,
+                "successFrom": 12,
+                "successTo": 50,
+                "failFrom": 0,
+                "failTo": 10
+            }
+        }, {
+            "id": "12",
+            "name": "Satisfaction",
+            "dataType": "Date",
+            "goalCriteria": {
+                "meetFrom": 12,
+                "meetTo": 20,
+                "successFrom": 12,
+                "successTo": 50,
+                "failFrom": 0,
+                "failTo": 10
+            }
+        }, {
+            "id": "12",
+            "name": "Satisfaction",
+            "dataType": "Date",
+            "goalCriteria": {
+                "meetFrom": 12,
+                "meetTo": 20,
+                "successFrom": 12,
+                "successTo": 50,
+                "failFrom": 0,
+                "failTo": 10
+            }
+        }]
+    }],
+    "indicatorTypes":[
+        {"id":10, "name":"Satisfaction", "dataType":"String"},
+        {"id":11, "name":"Engagement", "dataType":"String"},
+        {"id":12, "name":"Contract Renewal", "dataType":"Date"},
+        {"id":13, "name":"Core Service Transitioned", "dataType":"Date"},
+        {"id":14, "name":"Opern Opportunities", "dataType":"Number"}
+        ],
+    "stringOptions":{"success":["Happy", "Very Happy", "Stoked"],"meet":["Happy","Stoked"], "fail":["Unhappy","Angry"]}
+}

@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+/* channel-icons */
+@font-face {
+  font-family: "channel-icons";
+  src:url("https://fontastic.s3.amazonaws.com/CHXQf989eiw8PH22qMcCwX/fonts/1445365522.eot");
+  src:url("https://fontastic.s3.amazonaws.com/CHXQf989eiw8PH22qMcCwX/fonts/1445365522.eot?#iefix") format("embedded-opentype"),
+    url("https://fontastic.s3.amazonaws.com/CHXQf989eiw8PH22qMcCwX/fonts/1445365522.woff") format("woff"),
+    url("https://fontastic.s3.amazonaws.com/CHXQf989eiw8PH22qMcCwX/fonts/1445365522.ttf") format("truetype"),
+    url("https://fontastic.s3.amazonaws.com/CHXQf989eiw8PH22qMcCwX/fonts/1445365522.svg#1445365522") format("svg");
+   font-weight: normal; 
+  font-style: normal;
+}
+
+[data-srevicon]:before {
+  font-family: "channel-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="srevicon-"]:before,
+[class*=" srevicon-"]:before {
+  font-family: "channel-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.srevicon-coins-lg:before {
+  content: "a";
+}
+.srevicon-done-lg:before {
+  content: "b";
+}
+.srevicon-message:before {
+  content: "c";
+}
+.srevicon-pencil:before {
+  content: "d";
+}
+.srevicon-heart-md:before {
+  content: "f";
+}
+.srevicon-folder-md:before {
+  content: "e";
+}
+.srevicon-check-sm:before {
+  content: "g";
+}
+.srevicon-x-sm:before {
+  content: "h";
+}
+.srevicon-dots-md:before {
+  content: "i";
+}

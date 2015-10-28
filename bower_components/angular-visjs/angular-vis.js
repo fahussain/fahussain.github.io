@@ -20,14 +20,18 @@ angular.module('ngVis', [])
                 data: '=',
                 options: '=',
                 events: '=',
-                component: '='
+                component: '=?'
             },
             link: function (scope, element, attr) {
                 var timelineEvents = [
                     'rangechange',
                     'rangechanged',
                     'timechange',
-                    'timechanged'
+                    'timechanged',
+                    'select',
+                    'doubleClick',
+                    'click',
+                    'contextmenu'
                 ];
 
                 // Declare the timeline
@@ -95,7 +99,7 @@ angular.module('ngVis', [])
                 data: '=',
                 options: '=',
                 events: '=',
-                component: '='
+                component: '=?'
             },
             link: function (scope, element, attr) {
                 var networkEvents = [
@@ -172,7 +176,7 @@ angular.module('ngVis', [])
                 data: '=',
                 options: '=',
                 events: '=',
-                component: '='
+                component: '=?'
             },
             link: function (scope, element, attr) {
                 var graphEvents = [

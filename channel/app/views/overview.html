@@ -1,0 +1,116 @@
+<div>
+    <div class="overview-top-section clearfix">
+        <div class="inline-block">
+            <h4>Welcome {{pageData.channelPartner}}</h4>
+            <div>New opportunities uploaded {{pageData.newOppsDate}}</div>
+        </div>
+        <div class="pull-right">
+            <div class="pull-left big-badge-container">
+                <div data-number="{{pageData.newOpps}}" class="big-round srevicon-coins-md badge-blue"></div>
+                See New Opportunities
+            </div>
+            <div class="pull-left big-badge-container">
+                <div data-number="{{pageData.updateOpps}}" class="big-round srevicon-envelope-md badge-orange"></div>
+                Update Opportunity Status
+            </div>
+            <div class="pull-left big-badge-container">
+                <div data-number="{{pageData.completedRequests}}" class="big-round srevicon-folder-md badge-blue"></div>
+                See Completed Requests
+            </div>
+            <div class="pull-left big-badge-container">
+                <div data-number="2" class="big-round srevicon-folder-md"></div>
+                Start New Request
+            </div>
+        </div>
+
+    </div>
+    <div class="overview-lower-section">
+        <div style="width:100%; height:20px"></div>
+        <div style="max-width: 1200px; background-color:white;margin:auto;padding:20px;" class="clearfix">
+            <div class="pull-left clearfix">
+                <h4>Opportunity Pipeline</h4>
+                <div style="padding:10px 0px 20px;" class="clearfix">
+                    <div class="pull-left">
+                        Expiration Quarter
+                        <ui-select ng-model="selected.expirationQuarter" theme="bootstrap" class="form-combo-box">
+                            <ui-select-match placeholder="Select or search...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in pageData.expirationQuarters | filter: $select.search">
+                                <span ng-bind-html="item.name | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="pull-left">
+                        Country
+                       <!-- <ui-select multiple ng-model="multipleDemo.selectedPeople" theme="bootstrap" style="width: 200px;" >
+                            <ui-select-match placeholder="Select person...">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="person in pageData.countries | propsFilter: {name: $select.search}">
+                                <div ng-bind-html="person.name| highlight: $select.search"></div>
+
+                            </ui-select-choices>
+                        </ui-select>-->
+                        
+                        <ui-select multiple ng-model="selected.country" theme="bootstrap" class="form-combo-box multiselect-bootstrap">
+                            <ui-select-match placeholder="Select or search...">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in pageData.countries | filter:{name: $select.search, code: $select.search}">
+                                <span ng-bind-html="item.name | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                        
+                    </div>
+                    <div class="pull-left">
+                        Reseller Rep
+                        <ui-select ng-model="selected.resellerRep" theme="bootstrap" class="form-combo-box">
+                            <ui-select-match placeholder="Select or search...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in pageData.resellerReps | filter: $select.search">
+                                <span ng-bind-html="item.name | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+
+                    <div class="pull-left">
+                        Distributor Rep
+                        <ui-select ng-model="selected.distributorRep" theme="bootstrap" class="form-combo-box">
+                            <ui-select-match placeholder="Select or search...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in pageData.distributorReps | filter: $select.search">
+                                <span ng-bind-html="item.name | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="pull-left">
+                        <div>&nbsp;</div>
+                        <button class="btn btn-blue" ng-click="refreshChart();">Go</button>
+                    </div>
+                </div>
+                <div>
+                    <div id="chart-container" style="min-width:670px; margin-bottom: 50px;height: 300px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <div class="pull-right" style="width:300px;">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h4>Expired Opportunity</h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="bang">!</div>
+                    </div>
+                </div>
+
+                <table class="opp-stats-table">
+                    <tbody>
+                        <tr ng-repeat="row in pageData.expiredOpps">
+                            <td>
+                                <a href="#">{{row.count}}</a>
+                            </td>
+                            <td>
+                                {{row.name}}
+                            </td>
+                            <td>
+                                {{row.amount}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
