@@ -44,7 +44,7 @@ app.controller('ChangePasswordController', ['$scope', function($scope){
        if ($scope.formChangePassword.$valid){
             document.querySelector('.sf-input-new-password').value = $scope.password;
             document.querySelector('.sf-input-confirm-password').value = $scope.confirmPassword;
-            invokeActionFunction();
+            sfSubmit();
         }
     };
     
@@ -54,7 +54,7 @@ app.controller('LoginController', ['$scope', function($scope){
         if ($scope.formLogin.$valid){
             document.querySelector('.sf-input-username').value = $scope.username;
             document.querySelector('.sf-input-password').value = $scope.password;
-            invokeActionFunction();
+            sfSubmit();
         }
     };
     
@@ -63,7 +63,7 @@ app.controller('ResetPasswordController', ['$scope', function($scope){
     $scope.submit = function(){ 
         if ($scope.formResetPassword.$valid){
             document.querySelector('.sf-input-email').value = $scope.email;
-            invokeActionFunction();
+            sfSubmit();
         }
     };
     
