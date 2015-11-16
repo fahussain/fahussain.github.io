@@ -71,5 +71,12 @@ a:hover{
     width:100%;
 }
 .margin-20 {
-    margin:20px 0;
+    margin:0 0 20px;
+}
+.sf-input-username,
+.sf-input-password,
+.sf-input-email,
+.sf-input-new-password,
+.sf-input-confirm-password {
+    display:none;
 }
