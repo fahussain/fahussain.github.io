@@ -60,6 +60,8 @@ app.controller('LoginController', ['$scope', function($scope){
     
 }]);
 app.controller('ResetPasswordController', ['$scope', function($scope){
+    $scope.success = success;
+    $scope.labelSendEmail = ($scope.success ? 'Sent':'Send Email');
     $scope.submit = function(){ 
         if ($scope.formResetPassword.$valid){
             document.querySelector('.sf-input-email').value = $scope.email;
