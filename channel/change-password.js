@@ -66,5 +66,8 @@ app.controller('ResetPasswordController', ['$scope', function($scope){
             sfSubmit();
         }
     };
+    $scope.toLogin = function(){
+      location.href = 'SSLogin';  
+    };
     
 }]);
