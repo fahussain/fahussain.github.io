@@ -28,6 +28,7 @@ app.directive('validPwd', function() {
         ctrl.$setValidity('letter', containsLetter);
         ctrl.$setValidity('number', containsDigit);
         ctrl.$setValidity('length', hasCorrectLength);
+
         if (containsLetter && containsDigit && hasCorrectLength) {
           return viewValue;
         } 
@@ -35,25 +36,36 @@ app.directive('validPwd', function() {
           return undefined;
         }
       });
-    }
+    } 
   };
 });
-app.controller('ChangePwdController', ['$scope', function($scope){
-    var form = document.getElementById('change-password');
-    form.addEventListener(
-        'submit',
-        function(e) {
-            //$scope.changePassword.$submitted = true;
-            //$scope.$apply();
-            //!$scope.changePassword.$valid && e.preventDefault();
-        },
-        false
-    );
-    $scope.submit = function(){
-        if ($scope.changePassword.$valid){
-	    	document.getElementById('changePassword:theForm:psw').value = $scope.password;
-     		document.getElementById('changePassword:theForm:vpsw').value = $scope.confirmPwd;
-       		document.getElementById('changePassword:theForm').submit();
+app.controller('ChangePasswordController', ['$scope', function($scope){
+   $scope.submit = function(){
+       if ($scope.formChangePassword.$valid){
+            document.querySelector('.sf-input-new-password').value = $scope.password;
+            document.querySelector('.sf-input-confirm-password').value = $scope.confirmPassword;
+            invokeActionFunction();
         }
-    }
+    };
+    
+}]);
+app.controller('LoginController', ['$scope', function($scope){
+    $scope.submit = function(){
+        if ($scope.formLogin.$valid){
+            document.getElementById('changePassword:theForm:psw').value = $scope.password;
+            document.getElementById('changePassword:theForm:vpsw').value = $scope.confirmPwd;
+            invokeActionFunction();
+        }
+    };
+    
+}]);
+app.controller('ResetPasswordController', ['$scope','$document', function($scope, $document){
+    $scope.submit = function(){ 
+        if ($scope.formResetPassword.$valid){
+            document.querySelector('.sf-input-username').value = $scope.username;
+            document.querySelector('.sf-input-password').value = $scope.password;
+            invokeActionFunction();
+        }
+    };
+    
 }]);
