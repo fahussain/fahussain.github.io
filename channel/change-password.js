@@ -52,18 +52,17 @@ app.controller('ChangePasswordController', ['$scope', function($scope){
 app.controller('LoginController', ['$scope', function($scope){
     $scope.submit = function(){
         if ($scope.formLogin.$valid){
-            document.getElementById('changePassword:theForm:psw').value = $scope.password;
-            document.getElementById('changePassword:theForm:vpsw').value = $scope.confirmPwd;
+            document.querySelector('.sf-input-username').value = $scope.username;
+            document.querySelector('.sf-input-password').value = $scope.password;
             invokeActionFunction();
         }
     };
     
 }]);
-app.controller('ResetPasswordController', ['$scope','$document', function($scope, $document){
+app.controller('ResetPasswordController', ['$scope', function($scope){
     $scope.submit = function(){ 
         if ($scope.formResetPassword.$valid){
-            document.querySelector('.sf-input-username').value = $scope.username;
-            document.querySelector('.sf-input-password').value = $scope.password;
+            document.querySelector('.sf-input-email').value = $scope.email;
             invokeActionFunction();
         }
     };
