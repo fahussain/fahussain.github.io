@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="ScaffoldingContext-Web.config Connection String" description="ScaffoldingContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=(localdb)\v11.0; Initial Catalog=ScaffoldingContext-20141212125339; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|ScaffoldingContext-20141212125339.mdf" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sony1\\Documents\\Visual\ Studio\ 2013\\Projects\\Inspinia_MVC5\\Inspinia_MVC5\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ScaffoldingContext']/@connectionString" />
-  </parameter>
-</parameters>
