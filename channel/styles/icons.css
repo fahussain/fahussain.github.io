@@ -83,3 +83,9 @@
 .icon-report2-md:before {
   content: "\70";
 }
+.icon-file-csv:before {
+  content: "\6a";
+}
+.icon-file-excel:before {
+  content: "\71";
+}
