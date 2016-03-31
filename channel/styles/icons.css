@@ -11,7 +11,7 @@
   font-style: normal;
 
 }
-
+/* new icons added */
 [data-icon]:before {
   font-family: "channel-icons" !important;
   content: attr(data-icon);
