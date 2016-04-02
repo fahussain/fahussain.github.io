@@ -44,10 +44,10 @@
 .srevicon-done-lg:before {
   content: "\62";
 }
-.srevicon-message-lg:before {
+.srevicon-message:before {
   content: "\63";
 }
-.srevicon-pencil-lg:before {
+.srevicon-pencil:before {
   content: "\64";
 }
 .srevicon-heart-md:before {
