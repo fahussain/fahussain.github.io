@@ -11,7 +11,7 @@
   font-style: normal;
 
 }
-/* new icons added */
+
 [data-icon]:before {
   font-family: "channel-icons" !important;
   content: attr(data-icon);
@@ -88,4 +88,13 @@
 }
 .srevicon-file-excel:before {
   content: "\71";
+}
+.srevicon-edit-doc-1:before {
+  content: "\73";
+}
+.srevicon-cir-plus:before {
+  content: "\72";
+}
+.srevicon-cir-minus:before {
+  content: "\74";
 }
