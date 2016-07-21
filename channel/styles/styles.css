@@ -12,7 +12,7 @@
 
 }
 
-[data-srevicon]:before {
+[data-icon]:before {
   font-family: "channel-icons" !important;
   content: attr(data-icon);
   font-style: normal !important;
@@ -44,10 +44,10 @@
 .srevicon-done-lg:before {
   content: "\62";
 }
-.srevicon-message-lg:before {
+.srevicon-message:before {
   content: "\63";
 }
-.srevicon-pencil-lg:before {
+.srevicon-pencil:before {
   content: "\64";
 }
 .srevicon-heart-md:before {
@@ -82,4 +82,19 @@
 }
 .srevicon-report2-md:before {
   content: "\70";
+}
+.srevicon-file-csv:before {
+  content: "\6a";
+}
+.srevicon-file-excel:before {
+  content: "\71";
+}
+.srevicon-edit-doc-1:before {
+  content: "\73";
+}
+.srevicon-cir-plus:before {
+  content: "\72";
+}
+.srevicon-cir-minus:before {
+  content: "\74";
 }
