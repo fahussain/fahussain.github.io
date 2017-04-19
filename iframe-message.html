@@ -1,0 +1,14 @@
+<html>
+<head>
+<script>
+function postMessage(message){
+  parent.postMessage(message,"some data");
+}
+</script>
+</head>
+<body>
+  <h3>This is iframe content</h3>
+  <button onclick="postMessage('SUCCESS');">Post success</button>
+  <button onclick="postMessage('ERROR');">Post Error</button>
+</body>
+</html>
