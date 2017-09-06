@@ -12,11 +12,11 @@
     if (is_safari) {
         if (!$.cookie('fixed')) {
             $.cookie('fixed', 'fixed', { expires: 365, path: '/' }); // 1 year
-            window.location.replace("https://ssrc-fah-dev-ed--ssrc.na55.visual.force.com/apex/safari_fix");
+            window.location.replace("https://localhost:4433/test/safari-cookies-fix.html");
         }
     }
 </script>
-<iframe src="https://ssrc-fah-dev-ed--ssrc.na55.visual.force.com/apex/safari_third_party_cookies_frame" width="50%" height="400" frameborder="2"></iframe>
+<iframe src="https://localhost:4433/test/safari-cookies-frame.html" width="50%" height="400" frameborder="2"></iframe>
 
 </body>
 </html>
