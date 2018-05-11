@@ -1,0 +1,86 @@
+{
+    "status": null,
+    "meta": {
+        "definitions": {
+            "quote": {
+                "type": "object",
+                "title": "Quote",
+                "required": ["name"],
+                "relationships": {},
+                "properties": {
+                    "expirationdate": {
+                        "type": "DATETIME",
+                        "title": "Expiration Date",
+                        "order": 5,
+                        "display": "true",
+                        "dbRequired": "false",
+                        "apiName": "expirationdate"
+                    },
+                    "clm_earliest_start_date__c": {
+                        "type": "DATETIME",
+                        "title": "Earliest Start Date",
+                        "order": 4,
+                        "display": "true",
+                        "dbRequired": "true",
+                        "apiName": "clm_earliest_start_date__c"
+                    },
+                    "local_currency_code__c": {
+                        "type": "SELECT",
+                        "title": "Local Currency Code",
+                        "order": 3,
+                        "display": "true",
+                        "dbRequired": "false",
+                        "apiName": "local_currency_code__c"
+                    },
+                    "ren_quoteamount__c": {
+                        "type": "NUMBER",
+                        "title": "Quote Amount",
+                        "order": 2,
+                        "display": "true",
+                        "dbRequired": "false",
+                        "apiName": "ren_quoteamount__c"
+                    },
+                    "quote_type__c": {
+                        "type": "SELECT",
+                        "title": "Quote Type",
+                        "order": 1,
+                        "display": "true",
+                        "dbRequired": "false",
+                        "apiName": "quote_type__c"
+                    },
+                    "name": {
+                        "type": "TEXT",
+                        "title": "Quote Name",
+                        "order": 0,
+                        "display": "true",
+                        "dbRequired": "true",
+                        "apiName": "name"
+                    }
+                }
+            }
+        }
+    },
+    "links": {
+        "self": "/opportunities/0061N00000VNSUw/BulkQuotes"
+    },
+    "included": null,
+    "errors": null,
+    "data": [{
+        "type":"quotes-import",
+        "id": "asdf098asd98",
+        "attributes":{
+            "expirationdate":null,
+            "clm_earliest_start_date__c":null,
+            "local_currency_code__c":null,
+            "ren_quoteamount__c":null,
+            "quote_type__c":null,
+            "name":""
+        },
+        "links": {
+        "Local_Currency_Code__c": "/options/Local_Currency_Code__c/Quote",
+        "Quote_Type__c": "/options/Quote_Type__c/Quote"
+    }   
+    }],
+    "action": "GET",
+    "status": "SUCCESS"
+}

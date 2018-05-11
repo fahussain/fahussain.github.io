@@ -1,0 +1,21 @@
+{
+    "data":[{
+        "type":"delimiter",
+        "id":"COMMA",
+        "attributes":{
+            "value":"Comma"
+        }
+    },{
+        "type":"delimiter",
+        "id":"SEMICOLON",
+        "attributes":{
+            "value":"Semicolon"
+        }
+    },{
+        "type":"delimiter",
+        "id":"TAB",
+        "attributes":{
+            "value":"Tab"
+        }
+    }]
+}

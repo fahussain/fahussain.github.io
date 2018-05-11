@@ -1,0 +1,10 @@
+{
+	"data":[{
+		"id":"61af37e5-ab93-4b73-ad70-6ce70cd397ca",
+		"type": "s3-signed-url",
+		"attributes":{
+			"attachmentId":"61af37e5-ab93-4b73-ad70-6ce70cd397ca",
+			"url":"https://avaloncms.s3.amazonaws.com/dell/uploadedFile/61af37e5-ab93-4b73-ad70-6ce70cd397ca?x-amz-security-token=FQoDYXdzEP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDKaYf8sbXjIwtF1xCSK3A3pfWAb2N1hFhqBt00DuzPL1celz7ql3AVeA2KpTy%2FKzgTj4XFLUBTiG9KQoW4gRIzdcf7GUY6apbSrEqQwl75AKe2dDjtv%2FKzLPCpfTTa98IkSf%2FxKuePB84bGagm%2B37Z45mLl0KQ4euSsBsdbkley89SoriV8vZeG6BR%2BB1RmagXELgEiPbc6GNWVSaPY5NX9e%2FIs%2BPxNhqCgrPS8N3n%2FhJ687pjJyaQIlM0pmG8c2vHkcH0djmOPUQ7Z0fskXywZJeCwDBGpkAOZEqEDPJCdshFW8xH%2BbQB%2F1UNaSS2rDBwKNOsRbE10wIj5lBqQInjqTwrQh2ZSkjzmRx7Rsi4PBkAD%2FCUJZNMP78h3g9ep%2B%2BvHaEYD576aIC1oovhJWwTJ8TdycKbtEdwA2ro0FTUIzDbaZRZQ0Zg2HSpxKImFfXMy%2F3c7BVrqaJhALvLEzs%2FZznxMZ91OSwLrOJnGLWtJvLsU2T8ljMlWg2bh8e%2F4PAiSSx8Mg6oSNQ2gdLv5yof4ah0%2Fp04fg%2BISRcJotPe4%2BBtx5PPmSQJnMEeXrouBfDTzoq9qgUUiAsv3%2B2jaYlV8v8e44ylkomNfU1wU%3D&AWSAccessKeyId=ASIAI2MPF3BJA2JWAOZQ&Expires=1526019923&Signature=j0oYl%2FIZvkbSG8UISddh%2BgQKry8%3D"
+		}
+	}]
+}

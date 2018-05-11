@@ -1,0 +1,120 @@
+<div class="container">
+    <div data-ng-if="model.tab === 'IMPORT'">
+        <form name="bif" class="css-form" novalidate>
+        <div class="row py-3">
+            <h3>Data file</h3>
+            <div>Use <a href="{{model.quote.data[0].links.data_file_template}}">this template</a> to create data file.</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4" data-ng-class="{'has-error':(bif.dl.$invalid && (bif.$submitted || bif.dl.$touched))}">
+                <div style="padding:5px;">Select delimiter</div>
+                <ui-select name="dl" data-ng-model="model.dataFile.selected.delimiter" theme="bootstrap" reset-search-input="false">
+                    <ui-select-match ui-select-required="true" placeholder="Select a delimiter...">{{$select.selected.attributes.value}}</ui-select-match>
+                    <ui-select-choices repeat="delimiter in model.dataFile.delimiters track by $index">
+                        <div ng-bind-html="delimiter.attributes.value | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-4" data-ng-class="{'has-error':(bif.df.$invalid && (bif.$submitted || bif.df.$touched))}">
+                <div style="padding:5px;">Select date format</div>
+                <ui-select name="df" data-ng-model="model.dataFile.selected.dateFormat" theme="bootstrap" reset-search-input="false">
+                    <ui-select-match ui-select-required="true" placeholder="Select date format...">{{$select.selected.attributes.value}}</ui-select-match>
+                    <ui-select-choices repeat="dateFormat in model.dataFile.dateFormats track by $index" >
+                        <div ng-bind-html="dateFormat.attributes.value | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-4" data-ng-class="{'has-error':(bif.nf.$invalid && (bif.$submitted || bif.nf.$touched))}">
+                <div style="padding:5px;">Select amount format</div>
+                <ui-select name="nf" data-ng-model="model.dataFile.selected.numberFormat" theme="bootstrap" reset-search-input="false">
+                    <ui-select-match ui-select-required="true" placeholder="Select amount format...">{{$select.selected.attributes.value}}</ui-select-match>
+                    <ui-select-choices repeat="numberFormat in model.dataFile.numberFormats track by $index">
+                        <div ng-bind-html="numberFormat.attributes.value | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+        </div>
+
+        <div class="row py-3">
+            <div class="col-md-12">
+                <!--<div style="padding:5px;">Select data file</div>-->
+                <div ng-model="model.files" file-attachment files="model.files" fa-min="0" fa-max="3" fa-max-size="2000000" fa-valid="faValid" fa-busy="false" fa-accept="text/csv" fa-text="Drop data file here or click to choose."></div>
+            </div>
+        </div>
+        <div class="row py-3">
+            <h3>Quotes</h3>
+            <div class="py-3">
+                <label class="checkbox-container">
+                    <span></span>
+                    <input type="checkbox" data-ng-model="model.createQuotes">
+                    <span class="checkbox-checkmark"></span>
+                </label>
+                Create quote records associated with the above data file.
+            </div>
+            <!--<textarea class="form-control" style="height:8rem;" ng-model="model.presignedUrl"></textarea>-->
+        </div>
+        <div style="position:relative;">
+            <div class="quotes-overlay" data-ng-if="!model.createQuotes"></div>
+        <div data-ng-repeat="(quoteIndex, quote) in model.quotes" style="padding:20px 0;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="float:right;width:50px">
+
+                        <span data-ng-class="{'visibility-hidden': (quoteIndex === 0)}" data-ng-click="model.quotes.splice(quoteIndex, 1)" class="ss-lticon-x-sm file-icon pull-right" style="font-size:20px;"></span>
+                    </div>
+                    <div style="width:auto;">
+                        <label class="checkbox-container">
+                            <span></span>
+                            <input type="checkbox" data-ng-model="quote.primary" data-ng-change="setPrimary(quote)">
+                            <span class="checkbox-checkmark"></span>
+                        </label> Sync this quote
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--<div style="padding:5px 0;">Select Quote file</div>-->
+                    <div ng-model="quote.files" file-attachment files="quote.files" fa-min="0" fa-max="10" fa-max-size="2000000" fa-valid="faValid" fa-busy="false" fa-text="Drop quote attachments here or click to choose."
+                    on-file-add="onAddFile($file, quote);" on-file-remove="onRemoveFile($file, quote);"
+                    fa-accept="application/pdf, image/*, text/*, application/zip, application/gzip"></div>
+                </div>
+            </div>
+            <div class="row" style="padding:2px 0;" data-ng-repeat="(propIndex, propRow) in model.quotePropsGrid">
+                <div class="col-md-2" data-ng-repeat-start="(rowIndex, prop) in propRow">
+                    {{prop.title}}
+                    <span class="text-danger" data-ng-if="prop.dbRequired">*</span>
+                </div>
+                <div class="col-md-4" data-ng-repeat-end ng-class="{'has-error':(bif[prop.apiName + quoteIndex].$invalid && (bif.$submitted || bif[prop.apiName + quoteIndex].$touched))}">
+                    <!--<input data-ng-model="quote.data.attributes[prop.apiName]" type="text" class="form-control" />-->
+                    <p ng-if="(prop.type == 'DATETIME')" class="input-group">
+                        <input  name="{{prop.apiName+quoteIndex}}" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="quote.data[0].attributes[prop.apiName]" is-open="quote.meta.definitions.quote.properties[prop.apiName]._isOpen" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" data-ng-required="prop.dbRequired"
+                        autocomplete="off"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default btn-validating" ng-click="quote.meta.definitions.quote.properties[prop.apiName]._isOpen = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                    <input data-ng-if="prop.type == 'TEXT'" type="text" class="form-control" ng-model="quote.quote.data[0].attributes[prop.apiName]" name="{{prop.apiName+quoteIndex}}" data-ng-required="prop.dbRequired" autocomplete="off"/>
+                    <input data-ng-if="prop.type === 'NUMBER'" class="form-control" ng-model="quote.quote.data[0].attributes[prop.apiName]" name="{{prop.apiName+quoteIndex}}" data-ng-required="prop.dbRequired" autocomplete="off"/>
+                    <ui-select data-ng-if="prop.type == 'SELECT'" name="{{prop.apiName+quoteIndex}}" ng-model="quote.data[0].attributes[prop.apiName]" theme="bootstrap" reset-search-input="false">
+                            <ui-select-match ui-select-required="prop.dbRequired" placeholder="Search or Select...">{{$select.selected.attributes.value}}</ui-select-match>
+                            <ui-select-choices repeat="option in quote.quote.meta.definitions.quote.properties[prop.apiName].options track by $index" refresh="getPicklistData(quote.quote.meta.definitions.quote.properties[prop.apiName],  quote.quote.data[0].links[prop.apiName])" refresh-delay="0">
+                                <div ng-bind-html="option.attributes.value | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                </div>
+            </div>
+            
+        </div>
+        <a data-ng-if="model.quotes.length < 20" href="javascript:;" data-ng-click="addQuote()"><strong>Add quote</strong></a>
+    </div>
+        <div class="row py-3">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <button class="btn btn-primary form-control" type="submit" data-ng-click="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>

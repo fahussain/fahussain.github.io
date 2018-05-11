@@ -1,0 +1,27 @@
+{
+    "data":[{
+        "type":"number-format",
+        "id":"1",
+        "attributes":{
+            "value":"###,###.##"
+        }
+    },{
+        "type":"number-format",
+        "id":"2",
+        "attributes":{
+            "value":"### ###.###"
+        }
+    },{
+        "type":"number-format",
+        "id":"3",
+        "attributes":{
+            "value":"###.###,##"
+        }
+    },{
+        "type":"number-format",
+        "id":"4",
+        "attributes":{
+            "value":"###.##"
+        }
+    }]
+}

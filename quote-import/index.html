@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="https://angular-ui.github.io/ui-select/dist/select.js"></script>
+    <link rel="stylesheet" href="https://angular-ui.github.io/ui-select/dist/select.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">-->
+    <link href="//file.myfontastic.com/LXhCCjRcxtbsybpmZqEkaQ/icons.css" rel="stylesheet"/>
+    <!--<link href="//fahussain.github.io/common/bs.css" rel="stylesheet"/> -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="styles/bs.css" rel="stylesheet"> -->
+    <link href="styles/json-formatter.min.css" rel="stylesheet"/>
+    <link href="styles/style.css" rel="stylesheet"/>
+    
+    <style type="text/css">
+        @import url(//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+        } 
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>  
+
+<body> 
+    <!--<div id="header-container"></div>-->
+    <div ng-app="ss.lowtouch" class="bs">
+        <div class="" ng-view></div>
+        <!--<div id="opportunity-body" class="body"></div>-->
+    </div>
+   
+    <!--<div id="footer-container" class="footer"> </div>-->
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>  
+    <script>
+        $(function() {
+            $("#header-container").load("header.html");
+            $("#opportunity-body").load("opportunity.html");
+            $("#footer-container").load("footer.html"); 
+        });
+    </script>
+    <script src="scripts/json-formatter.min.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+
+</html>

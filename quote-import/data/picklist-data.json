@@ -1,0 +1,37 @@
+{
+	"data":[{
+		"id":"1",
+		"type":"picklist-option",
+		"attributes":{
+			"value": "Option 1"
+		}
+	},{
+		"id":"2",
+		"type":"picklist-option",
+		"attributes":{
+			"value": "Option 2"
+		}
+	},{
+		"id":"3",
+		"type":"picklist-option",
+		"attributes":{
+			"value": "Option 3"
+		}
+	},{
+		"id":"4",
+		"type":"picklist-option",
+		"attributes":{
+			"value": "Option 4"
+		}
+	},{
+		"id":"5",
+		"type":"picklist-option",
+		"attributes":{
+			"value": "Option 5"
+		}
+	}],
+	"action":"GET",
+	"links":{
+		"self":"/options/quote/local_currency_code__c"
+	},
+}

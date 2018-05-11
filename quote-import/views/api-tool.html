@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row py-2">
+        <div class="col-md-1">URL</div>
+        <div class="col-md-9">
+            <input ng-model="url" class="form-control" />
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary form-control" ng-click="onSubmit();">Submit</button>
+        </div>
+    </div>
+    <div class="row py-2">
+
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active" data-ng-class="{active: (model.tab === 'REQUEST')}">
+                    <a href="" data-ng-click="changeTab('REQUEST')">Request</a>
+                </li>
+                <li role="presentation" data-ng-class="{active: (model.tab === 'RESPONSE')}">
+                    <a href="" data-ng-click="changeTab('RESPONSE');">Response</a>
+                </li>
+            </ul>
+            <div data-ng-if="model.tab === 'RESPONSE'" style="position:relative;background-color:white; padding:30px 20px;border-radius:5px;">
+                <div style="position:absolute; top:5px; right:5px;">
+                    <a href="" ng-click="model.renderType = 'TREE'">Tree</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+                    <a href="" ng-click="model.renderType = 'FORMATTED'">Formatted JSON</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+                    <a href="" ng-click="model.renderType = 'RAW'">Raw</a>
+                </div>
+                <json-formatter ng-if="model.renderType === 'TREE'" json="model.responseJson" open="10"></json-formatter>
+                <div ng-if="model.renderType === 'RAW'">{{model.responseJson}}</div>
+                <pre ng-if="model.renderType === 'FORMATTED'" style="border:0;border-color:transparent; background-color:transparent;">{{model.responseJson | json}}</pre>
+            </div>
+            <div data-ng-if="model.tab === 'REQUEST'" style="position:relative;background-color:white; padding:30px 20px;border-radius:5px;">
+                <textarea id="request-json-textarea" 
+                    data-ng-model="model.requestJsonString" data-ng-keyup="autoExpand($event)" 
+                    class="form-control" style="max-width:100%;"></textarea>
+            </div>
+        </div>
+
+    </div>
+</div>

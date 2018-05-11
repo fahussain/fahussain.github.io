@@ -1,0 +1,38 @@
+<div>
+    <label for="btn-file-upload-{{randomId}}" class="attachment-box" ng-class="{'busy': faBusy}" style="width:100%;">
+        <span data-ng-if="!faBusy"><strong>{{faText}}</strong></span>
+        <span data-ng-if="faBusy">{{::labels.UPLOADING_FILES}}</span>
+    </label>
+    <input id="btn-file-upload-{{randomId}}" class="btn-file" type="file" accept="{{faAccept}}" multiple/>
+    <div ng-if="validity.count" class="file-attachment-error-msg">
+        <span class="text-danger">
+        {{labels.CHL_TOO_MANY_FILES}}
+        </span>
+    </div>
+    <div ng-if="validity.size" class="file-attachment-error-msg">
+        <span class="text-danger">
+            {{labels.CHL_FILE_TOO_BIG}}
+        </span>
+    </div>
+    <div ng-repeat="file in files" class="file-row">
+        <div class="file-icon">
+            <span data-ng-if="file.status === 'SELECTED'" class="ss-lticon-x-sm pull-right fa-icon" ng-click="removeFile(file)">
+                
+            </span>
+            <span data-ng-if="file.status === 'UPLOADED'" class="ss-lticon-check pull-right fa-icon">
+                
+            </span>
+        </div>
+        <div class="file-size">
+            <span class="file-size-text">
+                {{formatBytes(file.file.size)}}
+        </span>
+        </div>
+        <div class="file-name">
+            {{file.file.name}}
+        </div>
+        <div class="progress" data-ng-class="{'visibility-hidden':(file.status === 'SELECTED' || file.status === 'UPLOADED' || file.status === 'UPLOAD_ERROR')}">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+</div>
