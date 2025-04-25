@@ -83,20 +83,26 @@
     proceed.call(this, userOptions, callback);
   });
   H.addEvent(H.Chart, 'render', function () {
-    const groupedAxis = this.xAxis.filter((axis) => axis.options.grouped);
+    const chart = this;
+    let axisName = 'x';
+    if (this.options.chart.type === 'bar') {
+      axisName = 'y';
+    }
+    const axisIndex = axisName === 'x' ? 0 : 1;
+    const groupedAxis = chart.xAxis.filter((axis) => axis.options.grouped);
     groupedAxis.forEach((axis) => {
       let groupStartPosition = 0;
       axis.tickPositions.forEach((group, index) => {
-        const groupPositions = this.series[axis.index].points
+        const groupPositions = chart.series[axis.index].points
           .slice(groupStartPosition, group + 1)
           .map((p) => p.pos(true));
         const categoryWidth = groupPositions[1][0] - groupPositions[0][0];
-        const left = groupPositions.at(0)[0] - categoryWidth / 2,
-          right = groupPositions.at(-1)[0] + categoryWidth / 2;
+        const left = groupPositions.at(0)[axisIndex] - categoryWidth / 2,
+          right = groupPositions.at(-1)[axisIndex] + categoryWidth / 2;
         const label = axis.ticks[group].label;
-        label.attr({
-          x: (right + left) / 2,
-        });
+        const attrPosition = {};
+        attrPosition[axisName] = (right + left) / 2;
+        label.attr(attrPosition);
         groupStartPosition = group + 1;
       });
     });
